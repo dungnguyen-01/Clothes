@@ -1,0 +1,94 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container contact_container">
+        <div class="row">
+            <div class="col">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="login"><i class="fa fa-angle-right" aria-hidden="true"></i>Đăng ký</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- login -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+
+                    <div class="myform">
+                        <div class="logo mb-3">
+                            <div class="col-md-12 text-center">
+                                <h2>Chỉnh sửa thông tin tài khoản</h2>
+                            </div>
+                        </div>
+                        <h4 th:text="${message}" class="text-center text-info"></h4>
+                        <form action="/account/edit-profile" th:object="${account}" method="post" class="mt-4">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>ID:</label>
+                                        <input readonly th:field="*{id}"  class="form-control p-3" placeholder="Nhập email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Địa chỉ email:</label>
+                                        <input readonly th:field="*{email}"  class="form-control p-3"  placeholder="Nhập email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Giới tính:</label>
+                                        <div class="form-control">
+                                            <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
+                                                <input th:field="*{gender}" checked  type="radio" value="true"  style="height:17px; width:17px; vertical-align: middle;" /> - Nam
+                                            </label>
+                                            <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
+                                                <input th:field="*{gender}" type="radio" value="false"  style="height:17px; width:17px; vertical-align: middle;" /> - Nữ
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="form-group">
+                                        <label>Họ và tên:</label>
+                                        <input th:field="*{fullname}" class="form-control p-3" required  placeholder="Nhập họ & tên">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input th:field="*{address}" required type="text" class="form-control p-3"  placeholder="Nhập địa chỉ">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input th:field="*{mobile}" required type="tel" class="form-control p-3" placeholder="Nhập số điện thoại">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" th:field="*{activated}">
+                            <input type="hidden" th:field="*{password}">
+                            <input type="hidden" th:field="*{createDate}">
+                            <input type="hidden" th:field="*{updateDate}">
+
+                            <div class="col-md-5 text-center mx-auto">
+                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm mt-5 mb-3">Hoàn thành</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+</html>

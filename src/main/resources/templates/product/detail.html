@@ -1,0 +1,203 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+
+    <div class="container product_section_container">
+        <div class="row">
+            <div class="col product_section clearfix">
+
+                <!-- Breadcrumbs -->
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="/home/index">Trang chủ</a></li>
+                        <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="/product/index">Tất cả sản phẩm</a></li>
+                        <li class="active"><a th:href="@{|/product/detail/${product.pid}|}"><i class="fa fa-angle-right" aria-hidden="true"></i>Chi tiết sản phẩm</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sidebar -->
+
+                <section class="product-details spad">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="product__details__pic">
+                                    <div class="product__details__pic__left product__thumb nice-scroll" >
+                                        <th:block th:each="image : ${product.images}">
+                                        <a class="pt" th:href="@{|#${image.iname}|}">
+                                            <img class="product__thumb_img" th:src="@{|/images/${image.iname}|}" alt="">
+                                        </a>
+                                        </th:block>
+                                    </div>
+                                    <div class="product__details__slider__content">
+                                        <div class="product__details__pic__slider owl-carousel">
+                                            <th:block th:each="image : ${product.images}">
+                                            <img th:data-hash="${image.iname}" class="product__big__img" th:src="@{|/images/${image.iname}|}" alt="">
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 product__details_magi">
+                                <div class="product__details__text">
+                                    <h3 th:text="${product.pname}">Áo khoác hoodie dành cho nam</h3>
+                                    <div class="rating">
+
+                                        <span th:text="@{|( ${product.seen} lượt xem)|}">( 138 reviews )</span>
+                                    </div>
+                                    <div class="product__details__price" style="display: flex;justify-content: left">
+                                        <div class="product__details__price" th:text="${#numbers.formatDecimal(product.promotePrice, 0,'POINT',0,'POINT')}"></div>
+                                        <span th:if="${product.discount > 0}" th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'POINT')}"></span>
+                                    </div>
+                                    <div class="product__details__button">
+                                        <div class="quantity">
+                                            <span>Số lượng:</span>
+                                            <div class="pro-qty">
+                                                <input type="text" class="cart_qty_order" value="1" min="1" max="10">
+                                            </div>
+                                        </div>
+
+
+                                        <div th:attr="data-id=${product.pid}" class="cart-btn add_to_cart" style="cursor: pointer">
+                                            <span class="icon_bag_alt"></span> Thêm vào giỏ hàng</div>
+
+                                    </div>
+                                    <div class="product__details__widget">
+                                        <ul>
+                                            <li>
+                                                <span>Số lượng hiện có:</span>
+                                                <div>
+                                                    <input class="cart_qty_now form-control-plaintext" th:value="${product.quantity}" readonly>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span>Màu sẵn có:</span>
+
+                                                <div class="color__checkbox"  >
+                                                  <th:block th:each="c :${product.productColors}" th:with="ck =${product.productColors[0].color.bgColor}">
+                                                      <input name="cname" class="color_cname_product" type="radio" th:value="${c.color.cname}" th:checked="${c.color.bgColor == ck}" style="height:17px; width:17px" >
+                                                      <label th:text="${c.color.cname}" th:classappend="${c.color.txtColor}" th:for="${c.color.cid}"></label>
+                                                  </th:block>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span>Kích thước sẵn có:</span>
+                                                <div class="size__btn">
+                                                    <th:block th:each="s :${product.detailProductSizes}" th:with="ac =${product.detailProductSizes[0].size.sname}">
+                                                        <input th:value="${s.size.sname}" th:checked="${s.size.sname == ac}" name="sname" class="size_cname_product" type="radio"  style="height:17px; width:17px" >
+                                                        <label th:text="${s.size.sname}" ></label>
+                                                    </th:block>
+                                                </div>
+                                            </li>
+                                            <li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="product__details__tab">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                            <span style="color: #0c0c0c" th:utext="${product.description}"></span>
+                                        </div>
+                                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                            <h6>Reviews ( 2 )</h6>
+                                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+                                                quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+                                                Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+                                                voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+                                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+                                                consequat massa quis enim.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                                quis, sem.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="best_sellers" style="margin-top: -100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title new_arrivals_title">
+                        <h2>Sản phẩm cùng loại</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="product_slider_container">
+                        <div class="owl-carousel owl-theme product_slider">
+
+                            <!-- Slide 1 -->
+                            <th:block th:each="product : ${product.category.products}">
+                            <div class="owl-item product_slider_item">
+                                <div class="product-item">
+                                    <div class="product discount">
+                                        <div class="product_image">
+                                            <img th:src="@{|/images/${product.image}|}" alt="">
+                                        </div>
+                                        <div th:classappend="${product.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                        <div th:if="${product.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(product.discount*100, 0 , 0)}%|}"></span></div>
+                                        <div title="share" class="share" data-toggle="modal" data-target="#exampleModal"><i class='bx bxs-share bx-flip-horizontal bx-flashing' style='color:#1959ea' ></i></div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a th:href="@{|/product/detail/${product.pid}|}" th:text="${product.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                            <ul th:classappend="${product.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${product.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${product.discount > 0}"  th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(product.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_soldeye">
+                                        <ul style="display: flex;justify-content: space-around">
+                                            <li><i class="sold_i">Đã bán: 23</i></li>
+                                            <li><i style='color:#0fb2cf'>Lượt xem:
+                                                <span th:text="${product.seen}">123</span></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="red_button add_to_cart_button" style="background-color: #0c84ff"><a th:href="@{|/product/detail/${product.pid}|}" >Xem chi tiết</a></div>
+                                </div>
+                            </div>
+
+                            </th:block>
+
+
+                        </div>
+
+                        <!-- Slider Navigation -->
+
+                        <div class="product_slider_nav_left product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="product_slider_nav_right product_slider_nav d-flex align-items-center justify-content-center flex-column">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</html>

@@ -1,0 +1,66 @@
+<div class="card mt-3" xmlns:th="http://www.thymeleaf.org">
+    <div class="card-header bg-cyan">
+        <h5>Form thông tin</h5>
+    </div>
+    <form th:object="${item}" method="post" class="mt-3" th:attr="data-id=${item.id},data-name=${item.fullname}">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Id</label>
+                    <input th:field="*{id}" placeholder="Auto number" class="form-control" readonly/>
+
+                    <label class="mt-3">Họ và tên:</label>
+                    <input th:field="*{fullname}" class="form-control" placeholder="Nhập họ và tên..." required/>
+
+                    <label class="mt-3">Email:</label>
+                    <input th:field="*{email}" type="email" class="form-control" placeholder="Nhập email example@gmail.com..." required/>
+
+                    <label class="mt-3">Số điện thoại:</label>
+                    <input th:field="*{mobile}" class="form-control" placeholder="Nhập số điện thoai..." required/>
+                    <input type="hidden" th:field="*{password}" class="form-control" placeholder="Nhập số điện thoai..." required/>
+                </div>
+
+                <div class="col-md-6">
+                    <label >Chọn giới tính?</label>
+                    <div class="form-control">
+                        <label class="ml-4">
+                            <input th:field="*{gender}" type="radio" th:value="true" style="height: 17px; width: 17px; vertical-align: middle"/> - Nam
+                        </label>
+                        <label class="ml-5">
+                            <input th:field="*{gender}" type="radio" th:value="false" style="height: 17px; width: 17px; vertical-align: middle"/> - Nữ
+                        </label>
+                    </div>
+
+                    <label class="mt-3">Chọn trạng thái TK?</label>
+                    <div class="form-control">
+                        <label class="ml-4">
+                            <input th:field="*{activated}" type="radio" th:value="true" style="height: 17px; width: 17px; vertical-align: middle"
+                            /> - Active
+                        </label>
+                        <label class="ml-3">
+                            <input th:field="*{activated}" type="radio" th:value="false" style="height: 17px; width: 17px; vertical-align: middle"
+                            /> - Inactive
+                        </label>
+                    </div>
+
+                    <label class="mt-3">Chọn loại chức năng tài khoản.</label>
+                    <div class="form-control">
+                        <div class="form-check-inline" th:each="role : ${roles}">
+                            <div class="form-check form-switch me-5">
+                                <input name="role" th:value="${role.rid}" th:checked="${item.hasRole(role)}"
+                                       th:id="${role.rid}" type="radio" class="form-check-input"
+                                       style="height: 17px; width: 17px; vertical-align: middle">
+                                <label th:text="${role.rname}" th:for="${role.rid}" class="form-check-label"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center mb-5">
+            <div
+                    th:replace="/admin/shared/frags::btn-crud('account',*{id},'no')"
+            ></div>
+        </div>
+</form>
+</div>

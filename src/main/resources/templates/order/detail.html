@@ -1,0 +1,82 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container product_section_container" id="cart_info">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs d-flex flex-row align-items-center">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/order/list">Danh sách đơn hàng</a></li>
+                <li class="active"><a ><i class="fa fa-angle-right" aria-hidden="true"></i>Chi tiết đơn hàng</a></li>
+            </ul>
+        </div>
+
+        <form th:object="${item}">
+            <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 6px 2px;">
+                <h3 class="alert alert-success mt-5">THÔNG TIN ĐƠN HÀNG VỪA ĐẶT HÀNG</h3>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="ml-4 mr-4">
+                            <div class="form-group pt-5">
+                                <label>Mã đơn hàng:</label>
+                                <input th:field="*{oid}" style="font-weight: bold; font-size: 17px"
+                                       class="form-control-plaintext" placeholder="Auto number" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Họ và tên:</label>
+                                <input th:field="*{recipient.fullname}" style="font-weight: bold; font-size: 17px"
+                                       class="form-control-plaintext" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tổng tiền:</label>
+                                <input th:value="@{|*{#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}đ|}"
+                                       style="font-weight: bold; font-size: 17px"
+                                       class="form-control-plaintext item-amount p-3" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ngày đặt hàng:</label>
+                                <input type="date" th:field="*{createDate}" style="font-weight: bold; font-size: 17px"
+                                       class="form-control-plaintext text-bold" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tình trạng đơn hàng:</label>
+                                <span th:classappend="*{status.skin}" class="text-white pl-3 pr-3 p-2" style="border-radius: 10px" th:text="*{status.sname}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="ml-4 mr-4">
+                            <div class="form-group pt-5">
+                                <label>Địa số điện thoại:</label>
+                                <input th:field="*{mobile}" class="form-control p-3"
+                                       placeholder="Nhập số điện thoại" readonly>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label>Địa chỉ nhận hàng:</label>
+                                <input th:field="*{address}" class="form-control p-3"
+                                       placeholder="Nhập số điện thoại" readonly>
+                            </div>
+
+                            <div class="form-group pb-5">
+                                <label>Ghi chú:</label>
+                                <textarea readonly th:field="*{notes}" rows="3" class="form-control p-3"
+                                          placeholder="Ghi chú..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:replace="/order/_table_order_list"></div>
+
+                <div th:if="*{status.sid == 0}" class="card-footer mt-5">
+                    <a th:href="@{|/order/cancel/*{oid}|}" class="btn btn-danger btn-lg">
+                        Hủy đơn hàng</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</html>

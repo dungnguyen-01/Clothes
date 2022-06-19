@@ -1,0 +1,70 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chi tiết loại hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Id: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.id}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Tên tài khoản: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.fullname}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Email: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.email}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Số điện thoại: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.mobile}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Giới tính: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.gender?'Nữ':'Nam'}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Tình trạng tài khoản: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.activated?'Active':'Inactive'}" readonly class="form-control" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Ngày tạo: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.createDate}" readonly class="form-control" >
+            </div>
+        </div>
+
+        <hr>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Ngày update: </label>
+            <div class="col-sm-8">
+                <input th:value="${item.updateDate}" readonly class="form-control" >
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>

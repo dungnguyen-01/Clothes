@@ -1,0 +1,30 @@
+<div class="card mt-3" xmlns:th="http://www.thymeleaf.org">
+    <div class="mt-3 pl-2 pr-2 pb-5">
+        <h3 class="alert alert-info">Danh sách các sản phẩm đã đặt</h3>
+        <table class="table">
+            <thead class="thead-dark">
+            <th>No.</th>
+            <th>Tên sản phẩm</th>
+            <th>Màu</th>
+            <th>Kích thước</th>
+            <th>Giảm giá</th>
+            <th>Số lượng</th>
+            <th>Tổng tiền</th>
+            <th>Ngày đặt</th>
+            </thead>
+            <tbody>
+            <tr th:each="od, st : ${item.orderDetails}">
+                <td th:text="${st.count}"></td>
+                <td th:text="${od.product.pname}"></td>
+                <td th:text="${od.color}"></td>
+                <td th:text="${od.size}"></td>
+                <td th:text="@{|${od.discount * 100}%|}"></td>
+                <td th:text="${od.quantity}"></td>
+                <td th:text="${#numbers.formatDecimal(od.price, 0,'POINT',0,'POINT')}"></td>
+                <td th:text="${od.createDate}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

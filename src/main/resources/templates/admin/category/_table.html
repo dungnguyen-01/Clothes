@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org" class="mb-5">
+
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Tên loại hàng</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.cid},data-name=${itm.cname}" id="row">
+            <td th:text="${s.count}"></td>
+            <td th:text="${itm.cname}"></td>
+            <td>
+               <div th:replace="/admin/shared/frags::btn-ud('category',${itm.cid}, 'yes')"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>

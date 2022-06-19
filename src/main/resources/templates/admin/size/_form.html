@@ -1,0 +1,32 @@
+<div class="card mt-3" xmlns:th="http://www.thymeleaf.org">
+    <div class="card-header bg-cyan">
+        <h5>Form thông tin</h5>
+    </div>
+    <form th:object="${size}" method="post" class="mt-3" th:attr="data-id=${size.sid},data-name=${size.sname}">
+        <div class="card-body">
+            <div class="form-group mt-3 row">
+                <div class="col-4">
+                    <label>Id</label>
+                    <input th:field="*{sid}" class="form-control" readonly placeholder="Auto number">
+                </div>
+                <div class="col-8">
+                    <div class="text-center">
+                        <h4>Chọn loại đồ: </h4> <br>
+                            <input th:field="*{typeOfItem}" class="active"  type="radio" th:value="true" style="height:20px; width:20px; vertical-align: middle;">
+                             Áo
+                            <input th:field="*{typeOfItem}"  type="radio" th:value="false" style="height:20px; width:20px; vertical-align: middle;">
+                             Quần
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <label>Tên Kích thước</label>
+                <input th:field="*{sname}" class="form-control"  placeholder="Nhập tên kích thước" >
+                <i class="text-primary" th:errors="*{sname}"></i>
+            </div>
+        </div>
+        <div class="card-footer text-center mb-5">
+            <div th:replace="/admin/shared/frags::btn-crud('size',*{sid})"></div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+    <div class="modal fade" id="share-dialog-product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chia sẻ sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <ul class="modal_list_icon">
+                    <li><i class='bx bxl-facebook-circle bx-tada icon_share' style='color:#073d75'></i></li>
+                    <li><i class='bx bxl-messenger bx-tada icon_share' style='color:#2b8df2'></i></li>
+                    <li class="btn-send-mail"><i class='bx bxl-gmail bx-tada icon_share' style='color:#c91b12'></i></li>
+                </ul>
+
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="share-dialog-email" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Chia sẻ thông tin sản phẩm</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Sender Email</label>
+                        <input type="email" id="sender" class="form-control">
+
+                    </div>
+                    <div class="mb-3">
+                        <label>Receiver Email</label>
+                        <input type="email" id="receiver" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label>Subject</label>
+                        <input id="subject" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label>Comment</label>
+                        <textarea rows="3" id="text" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-start-send">Gửi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

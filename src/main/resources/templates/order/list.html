@@ -1,0 +1,48 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container product_section_container" id="cart_info">
+
+        <div class="breadcrumbs d-flex flex-row align-items-center">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a class="active" href="/order/list"><i class="fa fa-angle-right" aria-hidden="true"></i>Danh sách đơn hàng</a></li>
+
+            </ul>
+        </div>
+
+    <h3 class="alert alert-success">Danh sách các đơn đặt hàng</h3>
+    <div class="card mt-5">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>No.</th>
+                <th>Tên người đặt</th>
+                <th>Số điện thoại</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="itm, st : ${orders}">
+                <td th:text="${st.count}"></td>
+                <td th:text="${itm.recipient.fullname}"></td>
+                <td th:text="${itm.mobile}"></td>
+                <td th:text="${itm.createDate}"></td>
+                <td th:text="@{|${#numbers.formatDecimal(itm.amount,0,'POINT',0,'POINT')}đ|}"></td>
+                <td>
+<!--                    <span th:classappend="${itm.status.skin}" class="text-white p-1" style="border-radius: 10px" th:text="${itm.status.sname}"></span>-->
+                    <span style="font-weight: bold" th:text="${itm.status.sname}"></span>
+                </td>
+                <td>
+                    <a th:href="@{|/order/detail/${itm.oid}|}">Chi tiết</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</main>
+</html>

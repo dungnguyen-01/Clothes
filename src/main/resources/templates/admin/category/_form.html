@@ -1,0 +1,22 @@
+<div class="card mt-3"
+     xmlns:th="http://www.thymeleaf.org">
+        <div class="card-header bg-cyan">
+            <h5>Form thông tin</h5>
+        </div>
+    <form th:object="${item}" method="post" class="mt-3" th:attr="data-id=${item.cid},data-name=${item.cname}">
+        <div class="card-body">
+                <div class="form-group mt-3">
+                    <label>Id</label>
+                    <input th:field="*{cid}" class="form-control" readonly placeholder="Auto number">
+                </div>
+                <div class="form-group mt-3">
+                    <label>Tên loại hàng</label>
+                    <input th:field="*{cname}" class="form-control"  placeholder="Nhập tên loại hàng" >
+                     <i class="text-primary" th:errors="*{cname}"></i>
+                </div>
+        </div>
+        <div class="card-footer text-center mb-5">
+           <div th:replace="/admin/shared/frags::btn-crud('category',*{cid},'yes')"></div>
+        </div>
+    </form>
+</div>

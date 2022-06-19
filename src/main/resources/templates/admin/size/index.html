@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/admin/shared/layout::dynamic(~{::view})">
+
+<div th:fragment="view">
+    <div class="container-fluid mt-3">
+        <div class="alert alert-secondary">
+            <b><i class='bx bx-category'></i> SIZE MANAGEMENT</b>
+            <i class="float-right text-danger " th:text="${message}"></i>
+        </div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a th:class="@{|nav-link ${edit?'active':''}|}" data-toggle="tab" href="#list">
+                    <i class='bx bx-list-ul bx-burst bx-rotate-180' style='color:#b40dcb'></i>
+                    Danh sách</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="@{|nav-link ${edit?'':'active'}|}" data-toggle="tab" href="#edit">
+                    <i class='bx bx-add-to-queue bx-burst bx-rotate-180' style='color:#c50786'></i>
+                    From thêm thông tin</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div th:class="@{|tab-pane ${edit?'active':'fade'}|} " class="container-fluid  mt-4" id="list">
+                <div th:replace="/admin/size/_table"></div>
+            </div>
+            <div th:class="@{|tab-pane ${edit?'fade':'active'}|} " class="container-fluid  mt-4" id="edit">
+                <div th:replace="/admin/size/_form"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</html>

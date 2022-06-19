@@ -1,0 +1,201 @@
+<div class="card mt-3" xmlns:th="http://www.thymeleaf.org">
+  <div class="card-header bg-cyan">
+    <h5>Form thông tin</h5>
+  </div>
+  <form th:object="${item}" method="post" class="mt-3" enctype="multipart/form-data">
+    <div class="card-body" th:attr="data-pid=${item.pid},data-name=${item.pname}" >
+      <div class="row">
+          <div class="col-2 text-center">
+            <img th:src="@{|/images/*{image}|}" id="image_img"
+              style="height: 185px; max-width: 95%"/>
+              <div>
+                      <div class="gallery"></div>
+                  <hr/>
+                  <div class="vertical-menu">
+                      <div class="text-center" style="margin: auto" >
+                  <th:block th:each="img : ${imageList}" >
+                      <div class="div_link_a_image mb-2" style="position: relative;margin: auto" th:attr="data-id_image=${img.iid}">
+                          <a class="link_a_image delete_image_product" >X</a>
+                          <img style="width: 150px;height: 150px" th:src="@{|/images/${img.iname}|}" alt="">
+                      </div>
+                  </th:block>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-10">
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <label>Id</label>
+                        <input th:field="*{pid}" class="form-control" readonly placeholder="Auto number" />
+                      </div>
+                      <div class="col-9">
+                        <label>Tên sản phẩm</label>
+                        <input th:field="*{pname}" maxlength="70" class="form-control" placeholder="Nhập tên sản phẩm" />
+<!--                          <input th:field="*{addName}" th:value="${#request.remoteUser == null ? 'Nguyễn Văn A' : #authentication.principal.account.fullname}" type="hidden"/>-->
+                          <i class="text-danger" th:errors="*{pname}"></i>
+                          <i class="text-danger" th:text="${pname}"></i>
+                      </div>                    
+                </div>              
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label>Giá sản phẩm</label>
+                        <input th:field="*{price}" class="form-control" placeholder="Nhập giá" />
+                        <i class="text-danger" th:errors="*{price}"></i>
+                      </div>
+                      <div class="col-6">
+                        <label>Số lượng</label>
+                        <input th:field="*{quantity}"
+                          class="form-control"
+                          placeholder="Số lượng"
+                          type="number"
+                          max="100"
+                          min="1"
+                        />
+                          <i class="text-danger" th:errors="*{quantity}"></i>
+                      </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label>Sản phẩm giảm giá không?</label>
+                        <input th:field="*{discount}" class="form-control" placeholder="Nhập giá VD: 0.3%..." />
+                        <i class="text-danger" th:errors="*{discount}"></i>
+                      </div>
+                      <div class="col-6">
+                        <label for="special">SP đặc biệt?</label> <i class="text-danger" th:errors="*{special}"></i>
+                        <div class="form-control">
+                            <label class="ml-5">
+                                <input th:field="*{special}"  type="radio" th:value="true" style="height:17px; width:17px; vertical-align: middle;" /> - Yes
+                            </label>
+                            <label class="ml-5">
+                                <input th:field="*{special}" type="radio" th:value="false" style="height:17px; width:17px; vertical-align: middle;" /> - No
+                            </label>
+                        </div>
+                      </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                    <label>Image chính</label> <i class="text-danger" th:text="${validateImageAndSize}"></i>
+                    <input type="file" name="image_file" class="form-control" />
+                        <input th:field="*{image}" type="hidden">
+                   </div>
+                    <div class="col-6">
+                    <label>Image desc</label>
+                    <input type="file" multiple name="image_file_desc" class="form-control" />
+                    </div>
+                </div>
+              <div class="row mb-3">
+                  <div class="col-6">
+                      <label>Số lượng người xem sản phẩm.</label>
+                      <input th:field="*{seen}" class="form-control"/>
+                      <i class="text-primary"></i>
+                  </div>
+                  <div class="col-6">
+                      <label>SP có sẳn không?</label> <i class="text-danger" th:errors="*{available}"></i>
+                      <div class="form-control">
+                              <label class="ml-5">
+                                  <input th:field="*{available}"  type="radio" th:value="true" style="height:17px; width:17px; vertical-align: middle;" /> - Yes
+                              </label>
+                              <label class="ml-5">
+                                  <input th:field="*{available}" type="radio" th:value="false" style="height:17px; width:17px; vertical-align: middle;" /> - No
+                              </label>
+                      </div>
+                  </div>
+              </div>
+
+                <div class="row mb-3">
+                    <div class="form-group col-6">
+                        <label for="category">Loại sản phẩm:</label>
+                        <select th:field="*{category.cid}" id="category" name="category" class="form-control" >
+                                <th:block th:each="c: ${categories}">
+                                    <option th:value="${c.cid}" th:text="${c.cname}"></option>
+                                </th:block>
+                            </select>
+                    </div>
+                    <div class="col-6">
+                        <label>Ngày nhập:</label>
+                        <input th:field="*{createDate}"  type="date"  class="form-control">
+                    </div>
+              </div>
+            <div class="row">
+                <div class="col-7">
+                 <label>Chọn kích thước:</label> <i class="text-danger" th:text="${validateImageAndSize}"></i>
+                <div class="form-control" style="height: 130px;">
+                <!-- Nav pills -->
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#ao"> Chọn kích thước áo </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#quan"> Chọn kích thước quần </a>
+                    </li>          
+                </ul>              
+                <!-- Tab panes -->
+                <div class="tab-content mt-3">
+                    <div class="tab-pane container active" id="ao">
+                        <th:block th:each="size: ${sizeShirt}">
+                        <div class="form-check-inline">
+                            <div class="form-check form-switch me-5">
+                                <input th:value="${size.sid}" th:checked="${item.hasSize(size)}" th:id="${size.sid}"  name="sizeIds" type="checkbox" class="form-check-input">
+                                <label th:text="${size.sname}" th:for="${size.sid}" class="form-check-label"></label>
+                            </div>
+                          </div>
+                        </th:block>
+                    </div>
+                    <div class="tab-pane container fade" id="quan">
+                        <th:block th:each="size: ${sizeTrousers}">
+                            <div class="form-check-inline">
+                                <div class="form-check form-switch me-5">
+                                    <input th:value="${size.sid}" th:checked="${item.hasSize(size)}" th:id="${size.sid}"  name="sizeIds" type="checkbox" class="form-check-input">
+                                    <label th:text="${size.sname}" th:for="${size.sid}" class="form-check-label"></label>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>                 
+                </div>
+                 </div>
+                </div>
+                <div class="col-5">
+                    <label>Chọn loại giới tính</label> <i class="text-danger" th:errors="*{gender}"></i>
+                    <div class="form-control">
+                        <label class="ml-2">
+                            <input th:field="*{gender}"  type="radio" th:value="0" style="height:17px; width:17px; vertical-align: middle;" /> - Nam
+                        </label>
+                        <label class="ml-2">
+                            <input th:field="*{gender}" type="radio" th:value="1" style="height:17px; width:17px; vertical-align: middle;" /> - Nữ
+                        </label>
+                        <label class="ml-2">
+                            <input th:field="*{gender}" type="radio" th:value="2" style="height:17px; width:17px; vertical-align: middle;" /> - Cả hai
+                        </label>
+                    </div>
+                </div>
+            </div>
+              <div class="row mt-3">
+                  <label>Chọn màu:</label> <br>
+                  <div class="form-control">
+                  <th:block th:each="color: ${colors}">
+                      <div class="form-check-inline">
+                          <div class="form-check form-switch me-5">
+                              <input th:value="${color.cid}" th:checked="${item.hasColor(color)}" th:id="${color.cid}"  name="colorIds" type="checkbox" class="form-check-input">
+                              <label th:text="${color.cname}" th:classappend="${color.txtColor}" th:for="${color.cid}" style="font-weight:900" class="form-check-label"></label>
+                          </div>
+                      </div>
+                  </th:block>
+              </div>
+              </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="form-group col-12">
+            <label>Mô tả sản phẩm</label>
+            <textarea th:field="*{description}" id="description"  placeholder="Mô tả sản phẩm" ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-center mb-5">
+        <div th:replace="/admin/shared/frags::btn-crud('product',*{pid},'yes')"></div>
+    </div>
+</form>
+</div>

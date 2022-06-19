@@ -1,0 +1,39 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Image</th>
+            <th>Tên sản phẩm</th>
+            <th>Loại</th>
+            <th>Gia</th>
+            <th>SL</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.pid},data-name=${itm.pname}">
+            <td th:text="${s.count}"></td>
+            <td>
+                <img th:src="@{|/images/${itm.image}|}" style="width: 80px;height: 80px; border-width: 2px;border-color: #b80630">
+            </td>
+            <td >
+                <div th:text="${itm.pname}" style="white-space: nowrap;
+  width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis"></div>
+            </td>
+            <td th:text="${itm.category.cname}"></td>
+            <td>
+                <i th:text="${itm.price}"></i>
+            </td>
+            <td>
+                <p th:text="${itm.quantity}"></p>
+            </td>
+            <td>
+                <div th:replace="/admin/shared/frags::btn-ud('product',${itm.pid}, 'yes')"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

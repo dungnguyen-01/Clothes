@@ -1,0 +1,86 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container-fluid product_section_container shoppingcart_container" id="cart_info">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs d-flex flex-row align-items-center">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Shopping cart</a></li>
+            </ul>
+        </div>
+        <div class="">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" >
+                        <table class="table table-hover" >
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>SL</th>
+                                <th>Màu /
+                                    <br>
+                                    kích thước
+                                </th>
+                                <th>Giảm giá</th>
+                                <th>Tổng tiền</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${cart.items}" th:attr="data-id=${item.product.pid},data-price=${item.product.promotePrice}, data-qty=${item.product.quantity}">
+                                <th:block th:object="${item.product}">
+                                    <td th:text="*{pid}"></td>
+                                    <td >
+                                        <a th:href="@{|/product/detail/${item.product.pid}|}">
+                                        <ul style="display: flex">
+                                            <li><img th:src="@{|/images/*{image}|}" style="width: 100px;height: 100px"> </li>
+                                            <li th:text="*{pname}" class="ml-3" style="width: 350px"></li>
+                                        </ul>
+                                        </a>
+                                    </td>
+                                    <td th:text="*{#numbers.formatDecimal(promotePrice,0,'POINT',0,'POINT')}"></td>
+                                    <td >
+                                        <input th:value="${item.qty}" class="cart-update" type="number" min="1" style="width: 50px;font-weight: bold">
+                                    </td>
+                                    <td >
+                                        <ul style="display: inline-flex">
+                                            <li class="mr-2" th:text="${item.color}"></li> /
+                                            <li class="ml-2" th:text="${item.size}"></li>
+                                        </ul>
+                                    </td>
+                                    <td th:text="*{discount}"></td>
+                                    <td class="item-amount" th:text="${#numbers.formatDecimal(item.amount,0,'POINT',0,'POINT')}"></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger remote-from-cart">
+                                            <i class='bx bxs-message-square-x' style="font-size: 25px;cursor: pointer"></i>
+                                        </button>
+                                    </td>
+                                </th:block>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h3 th:classappend="${count > 0?'d-none':''}" class="text-center text-danger mt-5 mb-5">Chưa có sản phẩm.</h3>
+                        <div class="card-footer">
+                            <h3 th:classappend="${count > 0?'':'d-none'}" class="text-center" style="font-weight: bold">Tổng tiền:   <span  id="cart-amt" th:text="${#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}"></span>đ</h3>
+                            <a style="font-size: 19px"  href="/product/list" class="btn btn-primary text-center float-left pl-4 pr-4">
+                                <i class='bx bx-chevrons-left text-center' style='color:#f6f5f5;font-size: 19px'> </i>
+                                Mua tiếp</a>
+                            <a th:classappend="${count > 0?'':'d-none'}" style="font-size: 19px"  href="/order/checkout" class="btn btn-success float-right ml-3 pl-4 pr-4">
+                                <i class='bx bx-trim'> </i>
+                                Đặt hàng</a>
+                            <a th:classappend="${count > 0?'':'d-none'}" style="font-size: 19px"  href="/cart/clear" class="btn btn-danger nn-clear float-right mr-3 pl-3 pr-3">
+                                <i class="bx bx-trash" style="font-size: 19px"> </i>
+                                Xóa hết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+</html>

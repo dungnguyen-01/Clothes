@@ -1,0 +1,27 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Image</th>
+            <th>Tiêu đề</th>
+            <th>Người viết</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.id},data-name=${itm.title}">
+            <td th:text="${s.count}"></td>
+            <td>
+                <img th:src="@{|/images/${itm.image}|}" style="width: 80px;height: 80px; border-width: 2px;border-color: #b80630">
+            </td>
+            <td th:text="${itm.title}"></td>
+            <td th:text="${itm.author}"></td>
+
+            <td>
+                <div th:replace="/admin/shared/frags::btn-ud('blog',${itm.id}, 'yes')"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

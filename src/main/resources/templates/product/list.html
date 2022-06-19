@@ -1,0 +1,181 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+<div class="container product_section_container">
+
+    <div class="row">
+        <div class="col product_section clearfix">
+
+           <div th:replace="/product/_slider"></div>
+
+              <hr>
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/product/list"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Sidebar -->
+            <div th:replace="/product/_sidebar"></div>
+
+            <div class="main_content">
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+
+                            <!-- Product Sorting -->
+                            <div class="product_sorting_container product_sorting_container_top">
+                                <ul class="product_sorting" th:classappend="${products.isEmpty()?'d-none':''}">
+                                    <li>
+                                        <span class="type_sorting_text">Sắp xếp mặc định</span>
+                                        <i class="fa fa-angle-down"></i>
+                                        <ul class="sorting_type">
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Sắp xếp mặc định</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>SX theo giá</span></li>
+                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>SX theo tên</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <div class="pages d-flex flex-row align-items-center">
+                                    <div class="product_sorting_container_top  mr-lg-5 mr-md-3 mr-sm-2">
+                                        <form action="/product/search" class="product_sorting">
+                                            <input name="keyword"  placeholder="Nhập từ khóa để tìm kiếm..." class="product_search_input pl-3">
+                                            <button class="product_sorting_submit">Tìm kiếm</button>
+
+                                        </form>
+                                    </div>
+                                    <div th:classappend="${products.isEmpty()?'d-none':''}">
+                                        <div class="page_current" >
+                                            <span th:text="${products.number + 1}">1</span>
+                                            <ul class="page_selection">
+                                                <li th:with="s=${param.keyword}" th:each="n: ${#numbers.sequence(0,products.totalPages - 1)}" th:classappend="${n eq products.number}?'disabled'">
+                                                    <a th:href="@{|/product/${page}/${n}?keyword=${s}|}"><span th:text="${n + 1}"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="page_total"><span>of</span> <span th:text="${products.totalPages}"></span></div>
+                                        <div id="next_page" class="page_next"><a th:href="@{|/product/${page}/${products.number == products.totalPages - 1 ? 0 : products.number + 1}?keyword=${s}|}"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div th:classappend="${products.isEmpty()?'':'d-none'}" class="text-center mt-5">
+                                <i>
+                                    Từ khóa "[[${param.keyword}]]" không tìm thấy.</i>
+                            </div>
+
+                            <!-- Product Grid -->
+
+                        <div class="product-grid">
+                              <th:block th:each="product : ${products}">
+                                <div class="product-item women" th:attr="data-id=${product.pid}">
+                                    <input type="hidden" class="cart_qty_order" value="1">
+                                    <div class="product discount product_filter">
+                                        <div class="product_image">
+                                            <img th:src="@{|/images/${product.image}|}" alt="">
+                                            <div class="product__details__widget" style="border: none;position: absolute;bottom: -10px;left: 0;right: 0">
+                                                <ul style="display: flex;justify-content:center">
+                                                    <li>
+                                                        <div class="color__checkbox" >
+                                                            <th:block th:each="c :${product.productColors}">
+                                                                <label >
+                                                                    <input type="radio" name="color__radio">
+                                                                    <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                </label>
+                                                            </th:block>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        <div th:classappend="${product.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                        <div th:if="${product.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(product.discount*100, 0 , 0)}%|}"></span></div>
+                                        <div title="share" class="share share_product"><i class='bx bxs-share bx-flip-horizontal' style='color:#08d3ee;font-size: 27px' ></i></div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a th:href="@{|/product/detail/${product.pid}|}" th:text="${product.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                            <ul th:classappend="${product.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${product.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${product.discount > 0}"  th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(product.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_soldeye">
+
+                                        <ul style="display: flex;justify-content: space-around">
+                                            <li><i class="sold_i">Đã bán: 23</i></li>
+                                            <li><i style='color:#0fb2cf'>Lượt xem:
+                                                <span th:text="${product.seen}">123</span></i></li>
+                                        </ul>
+                                    </div>
+
+
+                                        <div th:classappend="${product.quantity > 0?'':'d-none'}" class="border-0 red_blue add_to_cart_button text-white">
+                                            <a th:href="@{|/product/detail/${product.pid}|}">
+                                            Xem chi tiết
+                                            </a>
+                                        </div>
+
+
+                                    <div th:classappend="${product.quantity < 0?'':'d-none'}" class="border-0 red_button add_to_cart_button text-white">Sản phẩm hết hàng</div>
+
+                                </div>
+                          </th:block>
+                        </div>
+
+
+                            <!-- Product Sorting -->
+
+                            <div class="product_sorting_container product_sorting_container_bottom clearfix">
+                                <span class="showing_results">Showing
+                                    <span th:text="${products.number + 1}">1</span>–<span th:text="${products.totalPages}"></span> of <span th:text="${products.totalElements}"></span> results</span>
+                                <div class="pages d-flex flex-row align-items-center">
+                                    <div class="page_current">
+                                        <span th:text="${products.number + 1}">1</span>
+                                        <ul class="page_selection">
+                                            <li th:with="s=${param.keyword}" th:each="n: ${#numbers.sequence(0,products.totalPages - 1)}" th:classappend="${n eq products.number}?'disabled'">
+                                                <a th:href="@{|/product/${page}/${n}?keyword=${s}|}"><span th:text="${n + 1}"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="page_total"><span>of</span> <span th:text="${products.totalPages}"></span></div>
+                                    <div id="next_page_1" class="page_next" th:with="s=${param.keyword}">
+                                        <a th:href="@{|/product/${page}/${products.number == products.totalPages - 1 ? 0 : products.number + 1}?keyword=${s}|}">
+                                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+</main>
+</html>
+
+
+
+<!--    <ul th:classappend="${products.isEmpty()?'d-none':''}"  class="pagination justify-content-center mt-5" th:with="s=${param.keyword}">-->
+<!--        <li class="page-item" th:classappend="${products.number eq 0} ? 'active'">-->
+<!--            <a class="page-link" th:href="@{|/product/${page}/${0}?keyword=${s}|}">Trang đầu</a></li>-->
+<!--        <li class="page-item" th:classappend="${products.number eq 0} ? 'disabled'">-->
+<!--            <a class="page-link" th:href="@{|/product/${page}/${products.number == 0 ? products.totalPages - 1: products.number - 1 }?keyword=${s}|}">Trở lại</a></li>-->
+<!--        <li class="page-item" th:each="n: ${#numbers.sequence( 1, products.totalPages - 2, 1)}" th:classappend="${n eq products.number}?'active'">-->
+<!--            <a class="page-link" th:href="@{|/product/${page}/${n}?keyword=${s}|}"><span th:text="${n}"></span></a>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:classappend="${products.number + 1 eq products.totalPages} ? 'disabled'">-->
+<!--            <a class="page-link" th:href="@{|/product/${page}/${products.number == products.totalPages - 1 ? 0 : products.number + 1}?keyword=${s}|}">Tiếp</a></li>-->
+<!--        <li class="page-item" th:classappend="${products.number + 1 eq products.totalPages} ? 'active'">-->
+<!--            <a class="page-link" th:href="@{|/product/${page}/${products.totalPages -1}?keyword=${s}|}">Trang cuối</a></li>-->
+<!--    </ul>-->

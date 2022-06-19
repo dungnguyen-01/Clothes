@@ -1,0 +1,76 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div  class="container product_section_container">
+        <div class="row">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/blog/list">Tin tức</a></li>
+                    <li class="active"><a href="/blog/detail/id"><i class="fa fa-angle-right" aria-hidden="true"></i>Chi tiết tin tức</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-8" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <h3 th:text="${blog.title}" style="text-transform: uppercase;margin-top: 20px" >XU HƯỚNG POLO NAM ĐƯỢC YÊU THÍCH TRONG THỜI TRANG XUÂN HÈ 2022</h3>
+                <div class="article-date mt-2">
+                    <i class="fa fa-calendar" aria-hidden="true"></i> <small th:text="${blog.createDate}"></small> |
+                    <small th:text="@{|Lượt xem: (${blog.seen})|}"></small>
+                    <a class="btn btn-primary ml-3 text-white" style="font-size: 10px;">Chia se</a>
+                </div>
+                <img class="mt-5" th:src="@{|/images/${blog.image}|}" style="width: 100%;height: auto;">
+                <div class="mt-5" th:utext="${blog.descr}">
+                </div>
+            </div>
+            <div class="col-lg-4 blog_hot">
+                <h4 >Bài viết nổi bật</h4>
+                <div class="row">
+                    <th:block th:each="see : ${sees}">
+                        <div class="media p-3  blog_aside_width">
+                            <img class="blog_new_img-hot" th:src="@{|/images/${see.image}|}" alt="John Doe" >
+                            <div class="media-body ">
+                                <a th:href="@{|/blog/detail/${see.id}|}">
+                                    <h6 style="font-weight:600;text-transform:uppercase;" th:text="${see.title}">XU HƯỚNG POLO NAM ĐƯỢC YÊU THÍCH TRONG THỜI TRANG XUÂN HÈ 2022</h6>
+                                </a>
+                                <div>
+                                    <i class="fa fa-user float-left" aria-hidden="true">
+                                        <small th:text="${see.author}"></small>
+                                    </i>
+                                    <i class="fa fa-calendar float-right mr-3" aria-hidden="true">
+                                        <small th:text="${see.createDate}"></small>
+                                    </i>
+                                    <br>
+                                    <small th:text="@{|Lượt xem: (${see.seen})|}"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+
+                </div>
+
+                <h4 class="mt-4">Sản phẩm bán chạy</h4>
+                <div class="row mt-4">
+                    <th:block th:each="product : ${products}">
+                        <div class="media pl-3 p-1  blog_aside_width mt-3">
+                            <a th:href="@{|/product/detail/${product.pid}|}">
+                                <img class="blog_new_img-hot" th:src="@{|/images/${product.image}|}" alt="John Doe" >
+                            </a>
+                            <div class="media-body ">
+                                <a th:href="@{|/product/detail/${product.pid}|}">
+                                    <h6 style="font-weight:600;text-transform:uppercase;color: rgb(12, 102, 220);" th:text="${product.pname}">Áo Thun Cổ Trụ Đơn Giản Y Nguyên Bản Ver11</h6>
+                                </a>
+                                <h5 class="text-danger" th:text="${#numbers.formatDecimal(product.promotePrice, 0,'POINT',0,'POINT')}">165.000VND</h5>
+                                <small>Đã bán <i th:text="${product.seen}"></i> <br></small>
+                            </div>
+                        </div>
+                    </th:block>
+
+                    <div class="article-loop-viewmore ml-5 mt-5">
+                        <a class="article-loop-viewmore_link text-info text-center" href="/product/list">Xem thêm...</a>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</main>
+</html>

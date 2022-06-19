@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html th:fragment="dynamic(view)" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='shortcut icon' href="/client/images/logo4.png"/>
+    <title>OGANI Shop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Colo Shop Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/client/styles/bootstrap4/bootstrap.min.css">
+    <link href="/client/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/client/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/client/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/client/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/client/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/categories_styles.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/categories_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/contact_styles.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/contact_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/cart.css">
+    <link rel="stylesheet" type="text/css" href="/client/styles/product-detail.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+
+</head>
+<body>
+<div class="super_container">
+<nav>
+    <nav th:replace="/shared/menu"></nav>
+</nav>
+
+    <div th:replace="${view}"></div>
+<footer class="mt-5">
+    <div th:replace="/shared/footer"></div>
+</footer>
+
+</div>
+
+<div th:replace="/shared/dialog"></div>
+
+
+
+<script src="/client/js/jquery-3.2.1.min.js"></script>
+<script src="/client/styles/bootstrap4/popper.js"></script>
+<script src="/client/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="/client/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="/client/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="/client/plugins/easing/easing.js"></script>
+<script src="/client/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="/client/js/custom.js"></script>
+<script src="/client/js/contact_custom.js"></script>
+<script src="/client/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="/client/js/categories_custom.js"></script>
+<script src="/client/js/jquery.magnific-popup.min.js"></script>
+<script src="/client/js/jquery-ui.min.js"></script>
+<script src="/client/js/mixitup.min.js"></script>
+<script src="/client/js/jquery.countdown.min.js"></script>
+<script src="/client/js/jquery.slicknav.js"></script>
+<script src="/client/js/jquery.nicescroll.min.js"></script>
+<script src="/client/js/main.js"></script>
+<script src="/client/js/shoppingCart.js"></script>
+<script src="/client/js/clothes.js"></script>
+<script src="/client/js/axios.min.js"></script>
+<script src="/client/js/local.province.js"></script>
+<script src="/client/js/sweetalert.js"></script>
+<script src="/client/js/notification.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
+
+<script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table class="table">
+        <thead class="thead-dark">
+        <th>No.</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá bán</th>
+        <th>Số lượng</th>
+        <th>Giảm giá</th>
+        <th>Tổng tiền</th>
+        </thead>
+        <tbody>
+        <tr th:each="d, st : ${item.orderDetails}">
+            <td th:text="${st.count}"></td>
+            <td th:text="${d.product.pname}"></td>
+            <td th:text="@{|${#numbers.formatDecimal(d.product.price,0,'POINT',0,'POINT')}đ|}"></td>
+            <td th:text="${d.quantity}"></td>
+            <td th:text="@{|${d.product.discount * 100}%|}"></td>
+            <td th:text="@{|${#numbers.formatDecimal(d.price*d.quantity*(1-d.discount),0,'POINT',0,'POINT')}đ|}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

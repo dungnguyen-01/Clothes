@@ -1,0 +1,56 @@
+<div class="card mt-3"
+     xmlns:th="http://www.thymeleaf.org">
+    <div class="card-header bg-cyan">
+        <h5>Form thông tin</h5>
+    </div>
+    <form th:object="${item}" method="post" class="mt-3" th:attr="data-id=${item.id},data-name=${item.phone}">
+        <div class="card-body row">
+            <div class="col-6">
+            <div class="form-group mt-3">1
+                <label>Id</label>
+                <input th:field="*{id}" class="form-control" readonly placeholder="Auto number">
+            </div>
+            <div class="form-group mt-3">
+                <label>Số điện thoại:</label>
+                <input th:field="*{phone}" class="form-control"  placeholder="Nhập số điện thoại" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Địa chỉ:</label>
+                <input th:field="*{address}" class="form-control"  placeholder="Nhập địa chỉ cửa hàng" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Email:</label>
+                <input th:field="*{email}" class="form-control"  placeholder="Nhập đại chỉ mail" required>
+            </div>
+            </div>
+
+            <div class="col-6">
+            <div class="form-group mt-3">
+                <label>Facebook: </label>
+                <input th:field="*{facebook}" class="form-control"  placeholder="Nhập link facebook" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Instagram: </label>
+                <input th:field="*{instagram}" class="form-control"  placeholder="Nhập link instagram" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Twitter: </label>
+                <input th:field="*{twitter}" class="form-control"  placeholder="Nhập link twitter" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Google Map:</label>
+                <textarea rows="3" th:field="*{map}" class="form-control"  placeholder="Nhập link share map" required></textarea>
+            </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-center mb-5">
+            <div th:replace="/admin/shared/frags::btn-crud('about',*{id},'yes')"></div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,150 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <!-- Header -->
+    <header class="header trans_300">
+        <div hidden th:classappend="${nofi}"></div>
+        <div hidden th:classappend="${nofiordersuccess}"></div>
+        <div hidden th:classappend="${nofiordererror}"></div>
+        <div hidden th:classappend="${contactnofi}"></div>
+        <!-- Top Navigation -->
+        <div class="top_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="top_nav_left">Miễn phí ship với đơn hàng trên 500k... lh: [[${about.phone}]]</div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <div class="top_nav_right">
+                            <ul class="top_nav_menu">
+<!-
+                                <!--/ Language / My Account -->
+                                <li class="language">
+                                    <a href="#">
+                                        Tiếng việt
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="language_selection">
+                                        <li><a href="#">Vietnamese</a></li>
+                                        <li><a href="#">English</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="account">
+                                    <a href="#">
+                                        <span th:text="${#request.remoteUser == null? 'Đăng nhập': #authentication.principal.account.fullname}"></span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul th:if="${#request.remoteUser == null}" class="account_selection">
+                                        <li><a href="/account/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng nhập</a></li>
+                                        <li><a href="/account/register"><i class="fa fa-user-plus" ></i>Đăng kí</a></li>
+
+                                        <li><a href="/account/forgot-password"><i class="fa fa-user-times" aria-hidden="true"></i>Quên mật khẩu</a></li>
+                                    </ul>
+                                    <ul th:unless="${#request.remoteUser == null}" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_PRODUCT','ROLE_ORDER')" class="account_selection">
+                                        <li><a href="/spring/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
+                                        <li><a href="/admin/home/index"><i class="fa fa-clipboard" aria-hidden="true"></i>Quản trị</a></li>
+                                        <li><a href="/account/change-password"><i class="fa fa-retweet" aria-hidden="true"></i>Đổi mật khẩu</a></li>
+                                        <li><a href="/account/edit-profile"><i class="fa fa-address-card" aria-hidden="true"></i>Cập nhật tài khoản</a></li>
+                                        <li><a href="/order/items-purchased"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Đơn hàng đã mua</a></li>
+                                        <li><a href="/order/list"><i class="fa fa-bars" aria-hidden="true"></i>DS đơn hàng</a></li>
+                                    </ul>
+                                    <ul th:unless="${#request.remoteUser == null}" sec:authorize="hasRole('ROLE_USER')" class="account_selection">
+                                        <li><a href="/spring/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a></li>
+                                        <li><a href="/account/change-password"><i class="fa fa-retweet" aria-hidden="true"></i>Đổi mật khẩu</a></li>
+                                        <li><a href="/account/edit-profile"><i class="fa fa-address-card" aria-hidden="true"></i>Cập nhật tài khoản</a></li>
+                                        <li><a href="/order/items-purchased"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Đơn hàng đã mua</a></li>
+                                        <li><a href="/order/list"><i class="fa fa-bars" aria-hidden="true"></i>DS đơn hàng</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+
+        <div class="main_nav_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-right">
+                        <div class="logo_container">
+                            <a href="/home/index">Ogani<span>shop</span></a>
+                        </div>
+                        <nav class="navbar">
+                            <ul class="navbar_menu">
+                                <li><a href="/">Trang chủ</a></li>
+                                <li><a href="/product/list">Tất cả sản phẩm</a></li>
+                                <li><a href="/product/special">SP đặc biệt</a></li>
+                                <li><a href="/product/best">Yêu thích nhất</a></li>
+                                <li><a href="/product/discount">Giảm giá</a></li>
+                                <li><a href="/blog/list">Tin  tức</a></li>
+                                <li><a href="/about/info">Liên hệ</a></li>
+                            </ul>
+
+                            <!-- show cart  -->
+                            <div th:replace="/shared/_cart"></div>
+
+
+                            <div class="hamburger_container">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- Hamburger Menu -->
+
+    <div class="hamburger_menu">
+        <div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="hamburger_menu_content text-right">
+            <ul class="menu_top_nav">
+                <li class="menu_item has-children">
+                    <a href="#">
+                        usd
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#">cad</a></li>
+                        <li><a href="#">aud</a></li>
+                        <li><a href="#">eur</a></li>
+                        <li><a href="#">gbp</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item has-children">
+                    <a href="#">
+                        English
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#">French</a></li>
+                        <li><a href="#">Italian</a></li>
+                        <li><a href="#">German</a></li>
+                        <li><a href="#">Spanish</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item has-children">
+                    <a href="#">
+                        My Account
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="menu_selection">
+                        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                        <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                    </ul>
+                </li>
+                <li class="menu_item"><a href="#">home</a></li>
+                <li class="menu_item"><a href="#">shop</a></li>
+                <li class="menu_item"><a href="#">promotion</a></li>
+                <li class="menu_item"><a href="#">pages</a></li>
+                <li class="menu_item"><a href="#">blog</a></li>
+                <li class="menu_item"><a href="#">contact</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

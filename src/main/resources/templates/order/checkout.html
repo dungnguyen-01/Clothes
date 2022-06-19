@@ -1,0 +1,145 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container product_section_container" id="cart_info">
+
+    <form action="/order/purchase" th:object="${item}">
+        <h3 class="alert alert-success mt-5">THÔNG TIN XÁC NHẬN TRƯỚC KHI ĐẶT HÀNG</h3>
+        <div class="row mt-5 mb-5">
+            <div class="col-8" >
+                <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+                <div class="ml-4 mr-4">
+                    <div class="form-group">
+                        <label>Mã đơn hàng:</label>
+                        <input th:field="*{oid}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext" placeholder="Auto number"   readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Họ và tên:</label>
+                        <input th:field="*{recipient.fullname}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext"   readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tổng tiền:</label>
+                        <input th:value="@{|*{#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}đ|}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext item-amount p-3" readonly>
+                        <input name="amount" th:value="${amount}" class="form-control " type="hidden">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày đặt hàng:</label>
+                        <input type="date" th:field="*{createDate}" style="font-weight: bold; font-size: 17px"  class="form-control-plaintext text-bold" >
+                    </div>
+
+                            <hr class="mt-2 mb-2">
+
+                    <div class="form-group mt-3">
+                        <label>Địa số điện thoại:</label>
+                        <input th:field="*{mobile}"  class="form-control p-3 w-50"  placeholder="Nhập số điện thoại" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ nhận hàng:</label>
+                        <br>
+                        <div style="display: inline-flex">
+                            <select required name="city" class="form-control form-inline mr-3" id="city" aria-label=".form-select-sm">
+                                <option value="" selected>Chọn tỉnh thành</option>
+                            </select>
+
+                            <select required name="district" class="form-control form-inline mr-3" id="district" aria-label=".form-select-sm">
+                                <option value=""  selected>Chọn quận huyện</option>
+                            </select>
+
+                            <select required name="ward" class="form-control form-inline" id="ward" aria-label=".form-select-sm">
+                                <option value=""  selected>Chọn phường xã</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" name="status.id" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ghi chú:</label>
+                        <textarea th:field="*{notes}" rows="3"  class="form-control p-3"  placeholder="Ghi chú..."></textarea>
+                    </div>
+
+                    <hr style="border: 1px solid red">
+                    <div class="mt-2" style="padding-bottom: 30px">
+                        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold w-50">Voucher</div>
+                        <div class="mt-2 input-group mb-4 border rounded-pill p-2 w-50">
+                            <input type="text" placeholder="Nhập Voucher" aria-describedby="button-addon3" class="form-control border-0">
+                            <div class="input-group-append border-0">
+                                <button id="button-addon3" type="button" class="btn btn-dark px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Sử dụng</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div style="border-radius: 5px;box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;">
+
+                <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>SP</th>
+                                <th>SL</th>
+                                <th>Tổng tiền</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${cart.items}" th:attr="data-id=${item.product.pid},data-price=${item.product.promotePrice}, data-qty=${item.product.quantity}">
+                                <th:block th:object="${item.product}">
+                                    <td >
+                                        <img th:src="@{|/images/*{image}|}" style="width: 60px;height: 60px">
+                                    </td>
+
+                                    <td  th:text="${item.qty}">
+                                    </td>
+
+                                    <td class="item-amount">
+                                     [[${#numbers.formatDecimal(item.amount,0,'POINT',0,'POINT')}]]đ
+                                    </td>
+
+                                </th:block>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                <hr style="border: 1px solid red">
+
+
+                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
+                <div class="p-4">
+                    <ul class="list-unstyled mb-4">
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>
+                            [[${#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}]]đ
+                        </strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
+                            <h5 class="font-weight-bold">[[${#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}]]đ</h5>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <input checked name="payment" value="1" type="radio">
+                            <label>Thanh toán sau khi nhận hàng</label>
+                        </li>
+                        <li>
+                            <input disabled name="payment" value="2" type="radio">
+                            <label style="opacity: 0.8">Thanh toán thẻ.</label>
+                        </li>
+                    </ul>
+
+                    <button class="btn btn-primary rounded-pill py-2 btn-block mt-3">Mua hàng</button>
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+    </form>
+    </div>
+</main>
+</html>

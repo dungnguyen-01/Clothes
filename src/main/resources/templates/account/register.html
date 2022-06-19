@@ -1,0 +1,113 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container contact_container">
+        <div class="row">
+            <div class="col">
+
+                <!-- Breadcrumbs -->
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="login"><i class="fa fa-angle-right" aria-hidden="true"></i>Đăng ký</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- login -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+
+                    <div class="myform">
+                        <div class="logo mb-3">
+                            <div class="col-md-12 text-center">
+                                <h2>Đăng ký </h2>
+                            </div>
+                        </div>
+                        <h4 th:text="${message}" class="text-center text-info"></h4>
+                        <form action="/account/register" th:object="${account}" method="post" class="mt-4">
+
+                            <div class="row">
+                                <div class="col-6">
+
+                                    <div class="form-group">
+                                        <label>Họ và tên:</label>
+                                        <i class="text-danger" th:errors="*{fullname}"></i>
+                                        <input class="form-control p-3" name="fullname"   placeholder="Nhập họ & tên">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Địa chỉ email:</label>
+                                        <i class="text-danger" th:errors="*{email}"></i>
+                                        <input  class="form-control p-3" name="email"  placeholder="Nhập email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Giới tính:</label>
+                                        <div class="form-control">
+                                            <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
+                                                <input name="gender" checked  type="radio" value="true"  style="height:17px; width:17px; vertical-align: middle;" /> - Nam
+                                            </label>
+                                            <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
+                                                <input name="gender" type="radio" value="false"  style="height:17px; width:17px; vertical-align: middle;" /> - Nữ
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <i class="text-danger" th:errors="*{mobile}"></i>
+                                        <input type="tel" class="form-control p-3" name="mobile"   placeholder="Nhập số điện thoại">
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Mật khẩu</label>
+                                        <i class="text-danger" th:errors="*{password}"></i>
+                                        <input type="password" class="form-control p-3" name="password"  placeholder="Nhập mật khẩu">
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Xác nhận mật khẩu</label>
+                                        <i class="text-danger" th:errors="*{password}"></i>
+                                        <input type="password" class="form-control p-3" name="confirmPass"  placeholder="Nhập lại mật khẩu">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-5 text-center mx-auto">
+                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm mt-5 mb-3">Đăng ký</button>
+                            </div>
+                            <div class="col-md-8 mx-auto">
+                                <div class="login-or">
+                                    <hr class="hr-or">
+                                    <span class="span-or">or</span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mb-3 mx-auto">
+                                <p class="text-center">
+                                    <a href="/" class="google btn mybtn">
+                                        <img src="/client/images/google.png" style="width: 40px;height: 40px" > Google
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="form-group mt-5">
+                                <p class="text-center">Trở lại? <a href="/account/login" style="text-decoration: none"><i class="text-primary">Đăng nhập!</i></a></p>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+</html>

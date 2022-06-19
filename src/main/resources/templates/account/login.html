@@ -1,0 +1,80 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div class="container contact_container">
+        <div class="row">
+            <div class="col">
+
+                <!-- Breadcrumbs -->
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active"><a href="login"><i class="fa fa-angle-right" aria-hidden="true"></i>Đăng nhập</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- login -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+
+            <div class="myform">
+                <div class="logo mb-3">
+                    <div class="col-md-12 text-center">
+                       <h2>Đăng nhập</h2>
+                    </div>
+               </div>
+                <h4 th:text="${message}" class="text-center text-info"></h4>
+              <form action="/spring/login" method="post" name="login">
+                      <div class="form-group">
+                         <label for="email">Địa chỉ email:</label>
+                         <input  type="email" name="username"  class="form-control p-3" id="email" aria-describedby="emailHelp" placeholder="Nhập email">
+                      </div>
+                      <div class="form-group">
+                         <label for="password">Mật khẩu</label>
+                         <input type="password" name="password" id="password"  class="form-control p-3" aria-describedby="emailHelp" placeholder="Nhập mật khẩu">
+                      </div>
+                      <div class="form-group">
+                          <div style="display:flex;justify-content: space-around;">
+                          <div class="form-check">
+                            <input name="remember-me" type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>                              
+                          </div>
+                          <div>
+                                <a href="/account/forgot-password"><span>Quên mật khẩu?</span></a>
+                          </div>
+                         </div>
+                      </div>
+                      <div class="col-md-12 text-center ">
+                         <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Đăng nhập</button>
+                      </div>
+                      <div class="col-md-12 ">
+                         <div class="login-or">
+                            <hr class="hr-or">
+                            <span class="span-or">or</span>
+                         </div>
+                      </div>
+                      <div class="col-md-12 mb-3">
+                         <p class="text-center">
+                            <a href="/oauth2/google" class="google btn mybtn">
+                                <img src="/client/images/google.png" style="width: 40px;height: 40px" > Google
+                            </a>
+                         </p>
+                      </div>
+                      <div class="form-group mt-5">
+                         <p class="text-center">Chưa có tài khoản? <a href="/account/register" style="text-decoration: none"><i class="text-primary">Đăng ký!</i></a></p>
+                      </div>
+                   </form>
+            
+           </div>
+           </div>
+           </div>
+
+    </div>
+    </div>
+</main>
+</html>

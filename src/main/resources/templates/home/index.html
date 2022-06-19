@@ -1,0 +1,684 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+
+<main>
+
+    <div class="main_slider" style="background-image:url(/client/images/slider_1.jpg)">
+        <div class="container fill_height">
+            <div class="row align-items-center fill_height">
+                <div class="col">
+                    <div class="main_slider_content">
+                        <h6>Bộ sưu tập Xuân / Hè 2022</h6>
+                        <h1>Giảm giá tới 30% cho hàng mới về</h1>
+                        <div class="red_button shop_now_button"><a href="/product/discount">Xem ngay</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner -->
+
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url(/client/images/banner_1.jpg)">
+                        <div class="banner_category">
+                            <a href="categories.html">Nữ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url(/client/images/banner_2.jpg)">
+                        <div class="banner_category">
+                            <a href="categories.html">Cả hai</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="banner_item align-items-center" style="background-image:url(/client/images/banner_3.jpg)">
+                        <div class="banner_category">
+                            <a href="categories.html">Nam</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Arrivals -->
+
+    <!--
+    <div class="new_arrivals mt-5">
+        <div class="container">
+                <div>
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item float-right">
+                            <a class="nav-link active"  data-toggle="tab" href="#home">Sản phẩm nam</a>
+                        </li>
+                        <li class="nav-item float-right">
+                            <a class="nav-link" data-toggle="tab" href="#menu1">Quần short</a>
+                        </li>
+
+                        <li class="nav-item float-right">
+                            <a class="nav-link" data-toggle="tab" href="#menu1">Áo thun</a>
+                        </li>
+
+                        <li class="nav-item float-right">
+                            <a class="nav-link" data-toggle="tab" href="#menu1">Áo sơ my</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-5">
+                        <div class="tab-pane container active mb-5 pl-0 pr-0" id="home">
+                           <div class="row">
+                               <div class="col-lg-2  main_col2_info">
+                                   <div class="bg-dark">
+                                       <h6>
+                                           thu nha nua nha cau oui
+                                           thu nha nua nha cau oui
+                                           thu nha nua nha cau oui
+                                           thu nha nua nha cau ouid
+                                       </h6>
+                                   </div>
+
+
+                               </div>
+
+                               <div class="col-lg-10">
+                            <div class="mt-0 product-grid"  >
+                            <th:block th:each="men : ${productMenf}">
+                                <div class="product-item" style="margin-bottom: 0">
+                                    <div class="product discount product_filter">
+                                        <div class="product_image">
+                                            <img th:src="@{|/images/${men.image}|}" alt="">
+                                        </div>
+                                        <div th:classappend="${men.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                        <div th:if="${men.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(men.discount*100, 0 , 0)}%|}"></span></div>
+                                        <div title="share" class="share share_product"><i class='bx bxs-share bx-flip-horizontal' style='color:#08d3ee;font-size: 27px' ></i></div>
+                                        <div class="product_info">
+                                            <h6 class="product_name"><a th:href="@{|/product/detail/${men.pid}|}" th:text="${men.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                            <ul th:classappend="${men.discount > 0?'product_price_discount':''}" style="margin-top: -10%">
+                                                <li th:if="${men.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${men.discount > 0}"  th:text="${#numbers.formatDecimal(men.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(men.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_soldeye">
+                                        <ul style="display: flex;justify-content: space-around">
+                                            <li><i class="sold_i">Đã bán: 23</i></li>
+                                            <li><i style='color:#0fb2cf'>Lượt xem:
+                                                <span th:text="${men.seen}">123</span></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="red_button add_to_cart_button add_to_cart text-white">Thêm vào giỏ hàng</div>
+                                </div>
+                            </th:block>
+                            </div>
+                           </div>
+
+                           </div>
+
+                        </div>
+
+                        <div class="tab-pane container fade" id="menu1">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+                        </div>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    -->
+    <!--
+       <div class="new_arrivals mt-5">
+           <div class="container">
+
+               <h5>Sản phẩm dành cho nữ</h5>
+               <div>
+                   <ul class="nav nav-tabs">
+                       <li class="nav-item">
+                           <a class="nav-link active" data-toggle="tab" href="#home2">Sản phẩm nữ</a>
+                       </li>
+                       <li class="nav-item">
+                           <a class="nav-link" data-toggle="tab" href="#menu12">Menu 1</a>
+                       </li>
+                   </ul>
+
+                   <div class="tab-content">
+                       <div class="tab-pane container active mb-5 pl-0 pr-0" id="home2">
+                           <div class="row d-flex flex-row-reverse">
+                               <div class="col-lg-2 bg-dark main_col2_info">
+                                   <h6>
+                                       thu nha nua nha cau oui
+                                       thu nha nua nha cau oui
+                                       thu nha nua nha cau oui
+                                       thu nha nua nha cau ouid
+                                   </h6>
+                               </div>
+                               <div class="col-lg-10">
+                                   <div class="mt-0 product-grid"  >
+                                       <th:block th:each="men : ${productMenf}">
+                                           <div class="product-item" style="margin-bottom: 0">
+                                               <div class="product discount product_filter">
+                                                   <div class="product_image">
+                                                       <img th:src="@{|/images/${men.image}|}" alt="">
+                                                   </div>
+                                                   <div th:classappend="${men.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                                   <div th:if="${men.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(men.discount*100, 0 , 0)}%|}"></span></div>
+                                                   <div title="share" class="share share_product"><i class='bx bxs-share bx-flip-horizontal' style='color:#08d3ee;font-size: 27px' ></i></div>
+                                                   <div class="product_info">
+                                                       <h6 class="product_name"><a th:href="@{|/product/detail/${men.pid}|}" th:text="${men.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                                       <ul th:classappend="${men.discount > 0?'product_price_discount':''}" style="margin-top: -10%">
+                                                           <li th:if="${men.discount > 0?'':'hidden'}"> <i>
+                                                               <del th:if="${men.discount > 0}"  th:text="${#numbers.formatDecimal(men.price,0,'POINT',0,'POINT')}"></del></i>
+                                                           </li>
+                                                           <li> <div class="product_price" th:text="${#numbers.formatDecimal(men.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                                       </ul>
+                                                   </div>
+                                               </div>
+                                               <div class="product_soldeye">
+                                                   <ul style="display: flex;justify-content: space-around">
+                                                       <li><i class="sold_i">Đã bán: 23</i></li>
+                                                       <li><i style='color:#0fb2cf'>Lượt xem:
+                                                           <span th:text="${men.seen}">123</span></i></li>
+                                                   </ul>
+                                               </div>
+                                               <div class="red_button add_to_cart_button add_to_cart text-white">Thêm vào giỏ hàng</div>
+                                           </div>
+                                       </th:block>
+                                   </div>
+                               </div>
+                           </div>
+
+                       </div>
+
+                       <div class="tab-pane container fade" id="menu12">
+                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+                       </div>
+
+                   </div>
+               </div>
+
+           </div>
+       </div>
+       -->
+
+
+    <div class="new_arrivals">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="section_title new_arrivals_title">
+                        <h2>Sản phẩm nổi bật</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col text-center">
+                    <div class="new_arrivals_sorting">
+                        <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked"  data-filter=".accessories">Tất cả</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"  data-filter=".men">Nam</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">Nữ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="product-grid" >
+
+                        <th:block th:each="accessories : ${productMenWomen}">
+                            <div class="product-item accessories active product-item-home" th:attr="data-id=${accessories.pid}">
+                                <div class="product discount product_filter">
+                                    <div class="product_image">
+                                        <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        <div class="product__details__widget" style="border: none;position: absolute;bottom: -10px;left: 0;right: 0">
+                                            <ul style="display: flex;justify-content:center">
+                                                <li>
+                                                    <div class="color__checkbox" >
+                                                        <th:block th:each="c :${accessories.productColors}">
+                                                            <label >
+                                                                <input type="radio" name="color__radio">
+                                                                <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                            </label>
+                                                        </th:block>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div th:classappend="${accessories.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                    <div th:if="${accessories.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(accessories.discount*100, 0 , 0)}%|}"></span></div>
+                                    <div title="share" class="share share_product"><i class='bx bxs-share bx-flip-horizontal' style='color:#08d3ee;font-size: 27px' ></i></div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a th:href="@{|/product/detail/${accessories.pid}|}" th:text="${accessories.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                        <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                            <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                            </li>
+                                            <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product_soldeye">
+                                    <ul style="display: flex;justify-content: space-around">
+                                        <li><i class="sold_i">Đã bán: 23</i></li>
+                                        <li><i style='color:#0fb2cf'>Lượt xem:
+                                            <span th:text="${accessories.seen}">123</span></i></li>
+                                    </ul>
+                                </div>
+                                <div class="border-0 red_blue add_to_cart_button text-white"><a th:href="@{|/product/detail/${accessories.pid}|}" >Xem chi tiết</a></div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:each="men : ${productMen}">
+                            <div class="product-item men product-item-home">
+                                <div class="product discount product_filter">
+                                    <div class="product_image">
+                                        <img th:src="@{|/images/${men.image}|}" alt="">
+                                        <div class="product__details__widget" style="border: none;position: absolute;bottom: -10px;left: 0;right: 0">
+                                            <ul style="display: flex;justify-content:center">
+                                                <li>
+                                                    <div class="color__checkbox" >
+                                                        <th:block th:each="c :${men.productColors}">
+                                                            <label >
+                                                                <input type="radio" name="color__radio">
+                                                                <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                            </label>
+                                                        </th:block>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div th:classappend="${men.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                    <div th:if="${men.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(men.discount*100, 0 , 0)}%|}"></span></div>
+                                    <div title="share" class="share share_product"><i class='bx bxs-share bx-flip-horizontal' style='color:#08d3ee;font-size: 27px' ></i></div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a th:href="@{|/product/detail/${men.pid}|}" th:text="${men.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                        <ul th:classappend="${men.discount > 0?'product_price_discount':''}">
+                                            <li th:if="${men.discount > 0?'':'hidden'}"> <i>
+                                                <del th:if="${men.discount > 0}"  th:text="${#numbers.formatDecimal(men.price,0,'POINT',0,'POINT')}"></del></i>
+                                            </li>
+                                            <li> <div class="product_price" th:text="${#numbers.formatDecimal(men.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product_soldeye">
+                                    <ul style="display: flex;justify-content: space-around">
+                                        <li><i class="sold_i">Đã bán: 23</i></li>
+                                        <li><i style='color:#0fb2cf'>Lượt xem:
+                                            <span th:text="${men.seen}">123</span></i></li>
+                                    </ul>
+                                </div>
+                                <div class="border-0 red_blue add_to_cart_button text-white"><a th:href="@{|/product/detail/${men.pid}|}" >Xem chi tiết</a></div>
+                            </div>
+                        </th:block>
+
+                        <th:block th:each="women : ${productWomen}">
+                            <div class="product-item women product-item-home">
+                                <div class="product discount product_filter">
+                                    <div class="product_image">
+                                        <img th:src="@{|/images/${women.image}|}" alt="">
+                                        <div class="product__details__widget" style="border: none;position: absolute;bottom: -10px;left: 0;right: 0">
+                                            <ul style="display: flex;justify-content:center">
+                                                <li>
+                                                    <div class="color__checkbox" >
+                                                        <th:block th:each="c :${women.productColors}">
+                                                            <label >
+                                                                <input type="radio" name="color__radio">
+                                                                <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                            </label>
+                                                        </th:block>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div th:classappend="${women.discount > 0 ? 'favorite_left':''}" class="favorite"></div>
+                                    <div th:if="${women.discount > 0}" hidden class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span th:text="@{|-${#numbers.formatDecimal(women.discount*100, 0 , 0)}%|}"></span></div>
+                                    <div title="share" class="share" data-toggle="modal" data-target="#exampleModal"><i class='bx bxs-share bx-flip-horizontal bx-flashing' style='color:#1959ea' ></i></div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a th:href="@{|/product/detail/${women.pid}|}" th:text="${women.pname}">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                        <ul th:classappend="${women.discount > 0?'product_price_discount':''}">
+                                            <li th:if="${women.discount > 0?'':'hidden'}"> <i>
+                                                <del th:if="${women.discount > 0}"  th:text="${#numbers.formatDecimal(women.price,0,'POINT',0,'POINT')}"></del></i>
+                                            </li>
+                                            <li> <div class="product_price" th:text="${#numbers.formatDecimal(women.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product_soldeye">
+                                    <ul style="display: flex;justify-content: space-around">
+                                        <li><i class="sold_i">Đã bán: 23</i></li>
+                                        <li><i style='color:#0fb2cf'>Lượt xem:
+                                            <span th:text="${women.seen}">123</span></i></li>
+                                    </ul>
+                                </div>
+                                <div class="border-0 red_blue add_to_cart_button text-white"><a th:href="@{|/product/detail/${women.pid}|}" >Xem chi tiết</a></div>
+                            </div>
+                        </th:block>
+
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="/product/list" class="text-center">
+                            <button class="btn_detail">Xem thêm</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="new_arrivals mt-5">
+        <div class="container">
+    <div id="myCarousel" class="carousel slide carousel-fade mb-3" data-ride="carousel" style="height: 230px">
+        <div class="carousel-inner" style="height: 230px">
+            <div class="carousel-item active">
+                <div class="mask flex-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-7 col-12 order-md-1 order-2">
+                                <h4>Present your <br>
+                                    awesome product</h4>
+                                <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                    necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                                <a href="#">BUY NOW</a> </div>
+                            <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://i.imgur.com/NKvkfTT.png" class="mx-auto slider_img-size" alt="slide"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="mask flex-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-7 col-12 order-md-1 order-2">
+                                <h4>Present your <br>
+                                    awesome product</h4>
+                                <p>Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                    necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                                <a href="#">BUY NOW</a> </div>
+                            <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://i.imgur.com/duWgXRs.png" class="mx-auto slider_img-size" alt="slide"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="mask flex-center">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-7 col-12 order-md-1 order-2">
+                                <h4 >Present your <br>
+                                    awesome product</h4>
+                                <p >Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum <br>
+                                    necessitatibus praesentium voluptatum deleniti atque corrupti.</p>
+                                <a href="#">BUY NOW</a> </div>
+                            <div class="col-md-5 col-12 order-md-2 order-1"><img src="https://i.imgur.com/DGkR4OQ.png" class="mx-auto slider_img-size" alt="slide"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div >
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+    </div>
+
+        </div>
+    </div>
+    <!--slide end-->
+
+
+
+    <!-- Latest Product Section Begin -->
+    <section class="latest-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Sản phẩm mới nhất</h4>
+                        <div class="latest-product__slider owl-carousel">
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productMenWomen}">
+                                <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                        <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                            <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                            </li>
+                                            <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                        </ul>
+                                        <div class="mt-2">
+                                        <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                        <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                            <ul style="display: flex;justify-content:center">
+                                                <li>
+                                                    <div class="color__checkbox" >
+                                                        <th:block th:each="c :${accessories.productColors}">
+                                                            <label style="margin-right: 25px">
+                                                                <input type="radio" name="color__radio">
+                                                                <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                            </label>
+                                                        </th:block>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                </th:block>
+                            </div>
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productWomen}">
+                                    <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                            <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                            <div class="mt-2">
+                                                <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                                <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                                    <ul style="display: flex;justify-content:center">
+                                                        <li>
+                                                            <div class="color__checkbox" >
+                                                                <th:block th:each="c :${accessories.productColors}">
+                                                                    <label style="margin-right: 25px">
+                                                                        <input type="radio" name="color__radio">
+                                                                        <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                    </label>
+                                                                </th:block>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Sản phẩm bán chạy</h4>
+                        <div class="latest-product__slider owl-carousel">
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productMen}">
+                                    <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                            <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                            <div class="mt-2">
+                                                <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                                <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                                    <ul style="display: flex;justify-content:center">
+                                                        <li>
+                                                            <div class="color__checkbox" >
+                                                                <th:block th:each="c :${accessories.productColors}">
+                                                                    <label style="margin-right: 25px">
+                                                                        <input type="radio" name="color__radio">
+                                                                        <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                    </label>
+                                                                </th:block>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </th:block>
+                            </div>
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productSpecial}">
+                                    <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                            <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                            <div class="mt-2">
+                                                <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                                <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                                    <ul style="display: flex;justify-content:center">
+                                                        <li>
+                                                            <div class="color__checkbox" >
+                                                                <th:block th:each="c :${accessories.productColors}">
+                                                                    <label style="margin-right: 25px">
+                                                                        <input type="radio" name="color__radio">
+                                                                        <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                    </label>
+                                                                </th:block>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest-product__text">
+                        <h4>Sản phẩm đặc biệt</h4>
+                        <div class="latest-product__slider owl-carousel">
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productSpecial}">
+                                    <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                            <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                            <div class="mt-2">
+                                                <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                                <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                                    <ul style="display: flex;justify-content:center">
+                                                        <li>
+                                                            <div class="color__checkbox" >
+                                                                <th:block th:each="c :${accessories.productColors}">
+                                                                    <label style="margin-right: 25px">
+                                                                        <input type="radio" name="color__radio">
+                                                                        <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                    </label>
+                                                                </th:block>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </th:block>
+                            </div>
+                            <div class="latest-prdouct__slider__item">
+                                <th:block th:each="accessories : ${productNew}">
+                                    <a th:href="@{|/product/detail/${accessories.pid}|}" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img th:src="@{|/images/${accessories.image}|}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6 th:text="${accessories.pname}">Crab Pool Security</h6>
+                                            <ul th:classappend="${accessories.discount > 0?'product_price_discount':''}">
+                                                <li th:if="${accessories.discount > 0?'':'hidden'}"> <i>
+                                                    <del th:if="${accessories.discount > 0}"  th:text="${#numbers.formatDecimal(accessories.price,0,'POINT',0,'POINT')}"></del></i>
+                                                </li>
+                                                <li> <div class="product_price" th:text="${#numbers.formatDecimal(accessories.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                                            </ul>
+                                            <div class="mt-2">
+                                                <i>Đã xem: <small th:text="${accessories.seen}">123</small></i>
+                                                <div class="product__details__widget" style="border: none;position: absolute;bottom: 0;right: 0">
+                                                    <ul style="display: flex;justify-content:center">
+                                                        <li>
+                                                            <div class="color__checkbox" >
+                                                                <th:block th:each="c :${accessories.productColors}">
+                                                                    <label style="margin-right: 25px">
+                                                                        <input type="radio" name="color__radio">
+                                                                        <span th:classappend="${c.color.bgColor}" class="checkmark"></span>
+                                                                    </label>
+                                                                </th:block>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Benefit -->
+
+</main>
+
+</html>

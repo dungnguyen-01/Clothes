@@ -1,0 +1,138 @@
+<!-- Modal -->
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chi tiết loại hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form action="/admin/home/update" method="post">
+    <div class="container-fluid mb-2">
+
+        <div class="card-body"  th:object="${item}">
+            <div class="row p-2" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Id</label>
+                            <input th:field="*{oid}" class="form-control" readonly/>
+                        </div>
+                        <div class="col-md-7">
+                            <label>Ngày đặt:</label>
+                            <input th:field="*{createDate}" class="form-control" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-7">
+                            <label>Người đặt hàng:</label>
+                            <input hidden th:field="*{recipient.id}" class="form-control" readonly/>
+                            <input th:value="*{recipient.fullname}" class="form-control" readonly/>
+                        </div>
+                        <div class="col-5">
+                            <label>Chức vụ: :</label>
+                            <input th:field="*{recipient.role.rname}" class="form-control" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-7">
+                            <label>Người xác nhận đơn hàng:</label>
+                            <input hidden th:field="*{handlerName.fullname}" class="form-control" readonly/>
+                            <input th:value="*{handlerName.fullname}" class="form-control" readonly/>
+                        </div>
+                        <div class="col-5">
+                            <label>Chức vụ: :</label>
+                            <input th:field="*{handlerName.role.rname}" class="form-control" readonly/>
+                        </div>
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label>Tổng tiền:</label>
+                            <input th:field="*{amount}" class="form-control" readonly/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Số điện thoại:</label>
+                            <input readonly th:field="*{mobile}" class="form-control" placeholder="Nhập số điện thoai..."/>
+                        </div>
+                    </div>
+
+                    <label class="mt-3">Địa chỉ giao hàng:</label>
+                    <input th:field="*{address}" class="form-control" placeholder="Nhập địa chỉ..." readonly />
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label>Trạng thái đơn hàng:</label>
+                            <div class="form-group">
+                                <select th:disabled="${hid == -1 or hid == 3}" th:field="*{status.sid}"
+                                        class="form-control">
+                                    <th:block th:each="s: ${statuses}">
+                                        <option th:class="${s.skin}" th:value="${s.sid}" th:text="${s.sname}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Ngày xác nhận:</label>
+                            <input th:field="*{updateDate}" class="form-control" placeholder="Chưa xác nhận" readonly/>
+                        </div>
+                    </div>
+
+                    <label>Hình thức thanh toán:</label>
+                    <div class="form-group">
+                        <select disabled th:field="*{payment.pyid}" class="form-control">
+                            <th:block th:each="payment: ${payments}">
+                                <option th:value="${payment.pyid}" th:text="${payment.pyname}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                    <label>Notes</label>
+                    <textarea readonly th:field="*{notes}" rows="8" id="notes" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="mt-3 pl-2 pr-2 pb-5">
+                <h3 class="alert alert-info">Danh sách các sản phẩm đã đặt</h3>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <th>No.</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Màu</th>
+                    <th>Kích thước</th>
+                    <th>Giảm giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày đặt</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="od, st : ${item.orderDetails}">
+                        <td th:text="${st.count}"></td>
+                        <td th:text="${od.product.pname}"></td>
+                        <td th:text="${od.color}"></td>
+                        <td th:text="${od.size}"></td>
+                        <td th:text="@{|${od.discount * 100}%|}"></td>
+                        <td th:text="${od.quantity}"></td>
+                        <td th:text="${#numbers.formatDecimal(od.price, 0,'POINT',0,'POINT')}"></td>
+                        <td th:text="${od.createDate}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Xác nhận đơn hàng</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+    </form>
+
+</div>
+</div>
+</div>

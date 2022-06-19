@@ -1,0 +1,44 @@
+<main xmlns:th="http://www.thymeleaf.org">
+<div class="sidebar" >
+    <div class="sidebar_section">
+        <div class="sidebar_title">
+            <h5>Loại sản phẩm</h5>
+        </div>
+        <ul class="sidebar_categories" th:each="category : ${categories}">
+            <li>- <a th:href="@{|/product/category/${category.cid}|}" th:text="${category.cname}" style="text-transform: uppercase">Men</a></li>
+            <!--                        <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>-->
+        </ul>
+    </div>
+    <div th:classappend="${products.isEmpty()?'d-none':''}" class="sidebar_section sidebar_section_filter">
+        <div class="sidebar_title">
+            <h5>Lọc theo giá</h5>
+        </div>
+        <p>
+            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+        </p>
+        <div id="slider-range"></div>
+        <div class="filter_button"><span>filter</span></div>
+    </div>
+
+    <div class="sidebar_title">
+        <h5>Sản phẩm bán chạy</h5>
+    </div>
+    <th:block th:each="special : ${specials}">
+        <div class="media mt-2">
+            <a th:href="@{|/product/detail/${special.pid}|}">
+                <img class="mr-2" style="width: 70px; height: 70px" th:src="@{|/images/${special.image}|}" alt="John Doe" >
+            </a>
+            <div class="media-body ">
+                <a th:href="@{|/product/detail/${special.pid}|}">
+                    <h6 th:text="${special.pname}" style="font-weight:500;font-size:12px;text-transform:uppercase;color: rgb(12, 102, 220);">Áo Thun Cổ Trụ Đơn Giản Y Nguyên Bản Ver11</h6>
+                </a>
+                <ul th:classappend="${special.discount > 0?'product_price_discount':''}">
+                    <li th:if="${special.discount > 0?'':'hidden'}"> <i>
+                        <del th:if="${special.discount > 0}"  th:text="${#numbers.formatDecimal(special.price,0,'POINT',0,'POINT')}" style="font-size: 11px"></del></i>
+                    </li>
+                    <li> <div style="font-size: 11px; color: red" th:text="${#numbers.formatDecimal(special.promotePrice, 0,'POINT',0,'POINT')}">$120.00</div></li>
+                </ul>
+            </div>
+        </div>
+    </th:block>
+</div></main>

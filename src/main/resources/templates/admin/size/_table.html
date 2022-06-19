@@ -1,0 +1,23 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Tên kích thước</th>
+            <th>Giới </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="size,s : ${sizes}" th:attr="data-id=${size.sid},data-name=${size.sname}" id="row">
+            <td th:text="${s.count}"></td>
+            <td th:text="${size.sname}"></td>
+            <td th:text="${size.typeOfItem?'Áo':'Quần'}">
+            </td>
+            <td>
+                <div th:replace="/admin/shared/frags::btn-ud('size',${size.sid})"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<div xmlns:th="http://www.thymeleaf.org" class="mb-5">
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>NO.</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.id},data-name=${itm.phone}" id="row">
+                <td th:text="${s.count}"></td>
+                <td th:text="${itm.phone}"></td>
+                <td th:text="${itm.address}"></td>
+                <td th:text="${itm.email}"></td>
+                <td>
+                    <div th:replace="/admin/shared/frags::btn-ud('about',${itm.id}, 'no')"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,214 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1540px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	.single_product_thumbnails ul li
+	{
+		height: 110px;
+	}
+	.single_product_image
+	{
+		height: 436px;
+	}
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+
+	.contact_container
+	{
+		margin-top: 100px;
+	}
+
+	.reviews_col
+	{
+		padding-right: 15px;
+	}
+	.get_in_touch_col
+	{
+		margin-top: 40px;
+	}
+
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+
+	#google_map
+	{
+		height: 60vh;
+	}
+	.map_container
+	{
+		box-shadow: 0px 15px 39px rgba(0, 0, 0, 0.15);
+	}
+	.contact_contents h1, .follow_us_contents h1, .get_in_touch_contents h1
+	{
+		font-size: 24px;
+	}
+	.contact_contents p, .get_in_touch_contents p
+	{
+		font-size: 13px;
+	}
+	.contact_contents div:first-of-type
+	{
+		margin-top: 32px;
+	}
+	.contact_contents div
+	{
+		margin-top: 13px;
+	}
+	.form_input
+	{
+		font-size: 14px;
+		margin-bottom: 15px;
+		padding-left: 15px;
+	}
+	.input_message
+	{
+		font-size: 14px;
+		padding-left: 15px;
+	}
+	.message_submit_btn
+	{
+		font-size: 12px;
+		width: 145px;
+	}
+	.social
+	{
+		margin-top: 12px;
+	}
+	.input_ph::-webkit-input-placeholder
+	{
+		font-size: 14px !important;
+	}
+	.input_ph:-moz-placeholder /* older Firefox*/
+	{
+		font-size: 14px !important;
+	}
+	.input_ph::-moz-placeholder /* Firefox 19+ */ 
+	{
+		font-size: 14px !important;
+	} 
+	.input_ph:-ms-input-placeholder
+	{ 
+		font-size: 14px !important;
+	}
+	.input_ph::input-placeholder
+	{
+		font-size: 14px !important;
+	}
+
+}
+

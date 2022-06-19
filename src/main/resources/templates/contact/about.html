@@ -1,0 +1,94 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+<div class="container contact_container">
+    <div class="row">
+        <div class="col">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Map Container -->
+
+    <div class="row">
+        <div class="col">
+            <div id="google_map">
+                <!-- Map Begin -->
+                <div class="map">
+                    <div th:utext="${about.map}"></div>
+                    <div class="map-inside">
+                        <i class="icon_pin"></i>
+                        <div class="inside-widget">
+                            <h5>Thành phố Hồ Chí Minh</h5>
+                            <ul>
+                                <li>Phone: [[${about.phone}]]</li>
+                                <li>Add: [[${about.address}]]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map End -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us -->
+
+    <div class="row">
+
+        <div class="col-lg-6 contact_col">
+            <div class="contact_contents">
+                <h1>Liên hệ chúng tôi</h1>
+                <p>Có nhiều cách để liên hệ với chúng tôi. Bạn có thể gọi cho chúng tôi hoặc gửi email, chọn những gì phù hợp với bạn nhất.</p>
+                <div>
+                    <p>[[${about.phone}]]</p>
+                    <p>[[${about.email}]]</p>
+                </div>
+                <div>
+                    <p>Giờ mở cửa: 8.00am -18.00pm Thứ hai- Thứ bảy</p>
+                    <p>Chủ nhật: đóng cửa</p>
+                </div>
+            </div>
+
+            <!-- Follow Us -->
+
+            <div class="follow_us_contents">
+                <h1>Follow Us</h1>
+                <ul class="social d-flex flex-row">
+                    <li><a th:href="${about.facebook}" style="background-color: #3a61c9"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a th:href="${about.instagram}" style="background-color: #8f6247"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a th:href="${about.twitter}" style="background-color: #41a1f6"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-6 get_in_touch_col">
+            <div class="get_in_touch_contents">
+                <h1>Liên hệ với chúng tôi!</h1>
+                <p>Điền vào biểu mẫu dưới đây để nhận miễn phí và bảo mật.</p>
+                <br>
+                <form  action="/contact/send" method="post">
+                    <div>
+                        <input id="input_name" class="form_input input_name input_ph" type="text" name="fullname" placeholder="Nhập họ & tên" required="required" data-error="Name is required.">
+                        <input id="input_email" class="form_input input_email input_ph" type="email" name="email" placeholder="Email" required="required" data-error="Valid email is required.">
+                        <textarea id="input_message" class="input_ph input_message" name="message" placeholder="Message" rows="3" required data-error="Please, write us a message."></textarea>
+                    </div>
+                    <div>
+                        <button style="cursor: pointer" type="submit" class="red_button message_submit_btn" value="Submit">Gửi tin nhắn</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</html>

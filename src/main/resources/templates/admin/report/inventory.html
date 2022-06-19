@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/admin/shared/layout::dynamic(~{::view})">
+<div th:fragment="view">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/admin/js/clothes.admin.chart.js"></script>
+    <script src="/admin/js/clothes.admin.inventory.js"></script>
+    <div class="container-fluid pb-5">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="pie-chart-value" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="pie-chart-quantity" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="line-chart-price" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="column-chart-price" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="column-chart-share" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9" style="height: 350px">
+                    <div id="column-chart-like" class="shadow-sm border rounded h-100 p-3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</html>

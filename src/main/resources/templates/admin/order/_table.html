@@ -1,0 +1,27 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Tên người đặt</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.oid}" id="row">
+            <td th:text="${s.count}"></td>
+            <td th:text="${itm.recipient.fullname}"></td>
+            <td th:text="${itm.createDate}"></td>
+            <td th:text="${#numbers.formatDecimal(itm.amount, 0,'POINT',0,'POINT')}"></td>
+            <td th:class="${itm.status.skin}" th:text="${itm.status.sname}"></td>
+            <td>
+               <div th:replace="/admin/shared/frags::btn-ud('order',${itm.oid}, 'yes')"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

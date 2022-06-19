@@ -1,0 +1,251 @@
+.div_link_a_image:hover .link_a_image{
+    display: block;
+    background-color: bisque;
+    text-decoration: none ;
+}
+.link_a_image{
+    position: absolute;
+    right: 0;
+    color: rgb(231, 15, 15);
+    font-weight: 900;
+    background-color: beige;
+    border-radius:55px;
+    font-size: 13px;
+    padding: 3px 7px;
+    margin: 2px;
+    display: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.vertical-menu {
+    width: 200px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.product_modal_desc img {
+    width: 100%;
+}
+
+
+
+
+.product__details__button ul {
+    float: left;
+}
+
+.product__details__button ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.product__details__button ul li:last-child {
+    margin-right: 0;
+}
+
+.product__details__button ul li a {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #ebebeb;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    padding-top: 1px;
+}
+
+.product__details__button ul li a span {
+    font-size: 28px;
+    color: #666666;
+}
+
+
+.product__details__widget ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.product__details__widget ul li:last-child {
+    margin-bottom: 0;
+}
+
+.product__details__widget ul li span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+    width: 150px;
+    float: left;
+}
+
+.product__details__widget ul li .stock__checkbox {
+    overflow: hidden;
+}
+
+.product__details__widget ul li .stock__checkbox label {
+    display: block;
+    font-size: 14px;
+    color: #666666;
+    position: relative;
+    cursor: pointer;
+}
+
+.product__details__widget ul li .stock__checkbox label input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.product__details__widget ul li .stock__checkbox label input:checked~.checkmark {
+    border-color: #ca1515;
+}
+
+.product__details__widget ul li .stock__checkbox label input:checked~.checkmark:after {
+    border-color: #ca1515;
+    opacity: 1;
+}
+
+.product__details__widget ul li .stock__checkbox label .checkmark {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #444444;
+    border-radius: 2px;
+}
+
+.product__details__widget ul li .stock__checkbox label .checkmark:after {
+    position: absolute;
+    left: 0px;
+    top: -2px;
+    width: 11px;
+    height: 5px;
+    border: solid #ffffff;
+    border-width: 1.5px 1.5px 0px 0px;
+    -webkit-transform: rotate(127deg);
+    -ms-transform: rotate(127deg);
+    transform: rotate(127deg);
+    opacity: 0;
+    content: "";
+}
+
+.product__details__widget ul li .color__checkbox label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.product__details__widget ul li .color__checkbox label.active input~.checkmark:after {
+    border-color: #ffffff;
+    opacity: 1;
+}
+
+.product__details__widget ul li .color__checkbox label:last-child {
+    margin-right: 0;
+}
+
+.product__details__widget ul li .color__checkbox label input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.product__details__widget ul li .color__checkbox label input:checked~.checkmark:after {
+    border-color: #ffffff;
+    opacity: 1;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    height: 40px;
+    width: 40px;
+    background: #e31e2f;
+    border-radius: 50%;
+    content: "";
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.red-bg {
+    background: #c91818;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.black-bg {
+    background: #111111;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.white-bg {
+    background: #d9d4d2;
+}
+.product__details__widget ul li .color__checkbox label .checkmark.yellow-bg {
+    background: #e3e330;
+}
+
+
+.product__details__widget ul li .color__checkbox label .checkmark.green-bg {
+    background: rgb(34, 234, 117);
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.pink-bg {
+    background: rgb(205, 56, 227);
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.blue-bg {
+    background: rgb(92, 130, 239);
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark:after {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    width: 13px;
+    height: 6px;
+    border: solid #5c5c3d;
+    border-width: 3px 3px 0px 0px;
+    -webkit-transform: rotate(127deg);
+    -ms-transform: rotate(127deg);
+    transform: rotate(127deg);
+    opacity: 0;
+    content: "";
+}
+
+.product__details__widget ul li .size__btn label {
+    font-size: 14px;
+    color: #666666;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.product__details__widget ul li .size__btn label:last-child {
+    margin-right: 0;
+}
+
+.product__details__widget ul li .size__btn label.active {
+    color: #ca1515;
+}
+
+.product__details__widget ul li .size__btn label input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.product__details__widget ul li p {
+    margin-bottom: 0;
+    color: #666666;
+}
+
+.product__details__tab {
+    padding-top: 80px;
+    margin-bottom: 65px;
+}
+
+
+.modal-lg {
+    max-width: 75% !important;
+}
+
+

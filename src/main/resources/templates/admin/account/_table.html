@@ -1,0 +1,27 @@
+<div xmlns:th="http://www.thymeleaf.org">
+
+    <table id="table_id" class="display">
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>Tên tài khoản</th>
+            <th>Ngày tạo</th>
+            <th>Chức vụ</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itm,s : ${items}" th:attr="data-id=${itm.id},data-name=${itm.fullname}" >
+            <td th:text="${s.count}"></td>
+            <td th:text="${itm.fullname}"></td>
+            <td th:text="${itm.createDate}"></td>
+            <td th:text="${itm.role.rname}"></td>
+            <td th:text="${itm.activated?'Active':'Inactive'}"></td>
+            <td>
+               <div th:replace="/admin/shared/frags::btn-ud('account',${itm.id}, 'yes')"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

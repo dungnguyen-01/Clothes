@@ -1,0 +1,147 @@
+<!-- Modal -->
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chi tiết sản phẩm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="container-fluid mt-4 mb-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                   aria-selected="true">Thông tin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                   aria-controls="profile" aria-selected="false">Hình ảnh</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                   aria-controls="contact" aria-selected="false">Mô tả</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="form-group row mt-4">
+                    <label class="col-sm-3 col-form-label">Tên sản phẩm:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.pname}" readonly class="form-control-plaintext">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Thuộc loại</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.category.cname}" class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Giảm giá:</label>
+                    <div class="col-sm-9">
+                        <input th:value="@{|${item.discount * 100}%|}" class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Giá bán:</label>
+                    <div class="col-sm-9">
+                        <input th:value="@{|${#numbers.formatDecimal(item.price, 0,'POINT',0,'POINT')}đ|}"
+                               class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Số lượng:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.quantity}" class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Sản phẩm đặc biệt:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.special?'Sản phẩm đặc biệt':'Không phải sản phẩm đặc biệt'}"
+                               class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Số lượng người xem:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.seen}" class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Màu hiện có:</label>
+                    <div class="col-sm-9">
+
+                        <div class="product__details__widget">
+                            <ul>
+                                <li>
+                                    <div class="color__checkbox">
+                                        <th:block th:each="c :${item.productColors}">
+                                            <label class="mr-5">
+                                                <span class="checkmark" th:classappend="${c.color.bgColor}"></span>
+                                            </label>
+                                        </th:block>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Kích thước hiện có:</label>
+                    <div class="col-sm-9">
+                        <th:block th:each="s :${item.detailProductSizes}">
+                            <span th:text="${s.size.sname}" class="mr-3 font-weight-bold"></span>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Người thêm:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.addName}" class="form-control-plaintext" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Ngày sửa:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.updateDate}" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Ngày tạo:</label>
+                    <div class="col-sm-9">
+                        <input th:value="${item.createDate}" class="form-control" readonly>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <label class="mt-5">- Ảnh đại diện</label>
+                <div class="mt-4 text-center">
+                    <img th:src="@{|/images/${item.image}/|}"
+                         style="width: 70%; height: 500px; box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;"
+                         class="border-dark">
+                </div>
+
+                <label class="mt-5">- Ảnh chi tiết</label>
+                <div class="mt-4 text-center">
+                    <th:block th:each=" image : ${imageList}">
+                        <img th:src="@{|/images/${image.iname}/|}" class="border-dark m-2"
+                             style="width: 30%; height: 200px;box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
+                    </th:block>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="product_modal_desc mt-4" th:utext="${item.description}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>

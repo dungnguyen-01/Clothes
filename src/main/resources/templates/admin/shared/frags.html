@@ -1,0 +1,21 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <div th:fragment="btn-crud(path,id,show)" >
+        <button th:hidden="${show eq  'no'}" th:formaction="@{|/admin/${path}/create|}" th:classappend="${id ==null? '' : 'disabled'}"   class="btn btn-outline-success rounded-pill px-4">
+            <i class='bx bx-add-to-queue'></i> Create</button>
+        <button th:formaction="@{|/admin/${path}/update|}" th:classappend="${id !=null? '' : 'disabled'}"  class="btn btn-outline-info rounded-pill px-4">
+            <i class='bx bxs-edit'></i> Update</button>
+        <a th:href="@{|/admin/${path}/reset|}"  class="btn btn-outline-warning rounded-pill px-4">
+            <i class='bx bx-reset' ></i> Reset</a>
+<!--        <a th:classappend="${id !=null? '' : 'disabled'}" class="btn btn-outline-danger rounded-pill px-4 btn-delete">-->
+<!--            <i class='bx bx-trash' ></i> Delete</a>-->
+    </div>
+    <div th:fragment="btn-ud(path,id,show)">
+        <a th:href="@{|/admin/${path}/detail/${id}|}"  title="Chi tiết" class="btn btn-admin-detail btn-outline-info rounded-pill px-2">
+            <i class='bx bx-show'></i></a>
+        <a th:hidden="${show eq  'no'}"  th:href="@{|/admin/${path}/edit/${id}|}" title="Chỉnh sửa" class="btn btn-outline-info rounded-pill px-2">
+            <i class='bx bxs-edit'></i></a>
+        <a sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_PRODUCT')" th:attr="data-info=*{path}" title="Xóa" class="btn btn-outline-danger rounded-pill px-2 btn-delete">
+            <i class='bx bx-trash' ></i></a>
+    </div>
+</div>
