@@ -30,11 +30,10 @@ public class OrderServiceImpl implements OrderService{
         dao.save(order);
         List<OrderDetail> orderDetails = cartService.getItems()
                 .stream()
-                        .map(item -> {
-                            return  new OrderDetail(item.getQty(),item.getSize(),item.getColor(),order,item.getProduct());
-                        }).toList();
+                .map(item -> {
+                    return  new OrderDetail(item.getQty(),item.getSize(),item.getColor(),order,item.getProduct());
+                }).toList();
         orderDetailDAO.saveAll(orderDetails);
-
     }
 
     @Override

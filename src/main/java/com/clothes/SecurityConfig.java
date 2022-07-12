@@ -38,6 +38,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                                         "/admin/color/**",
                                         "/admin/category/**")
                 .hasAnyRole("ADMIN","PRODUCT")
+
+
+
                 .antMatchers("/admin/order/**")
                 .hasAnyRole("ADMIN","ORDER")
                 .antMatchers("/admin/product/delete",
@@ -70,10 +73,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**","/local.json");
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/resources/**","/local.json");
+//    }
 
     @Bean
     public BCryptPasswordEncoder getBCryptPasswordEncoder() {

@@ -2245,3 +2245,86 @@ section
 	color: #666666;
 	line-height: 20px;
 }
+
+/*
+link bubble
+*/
+
+
+/* icon  */
+#tnContact{
+    max-width: 230px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 3%;
+    right: 2%;
+    z-index: 9999;
+}
+#tnContact li{
+    list-style-type: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    position: relative;
+}
+#tnContact li a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 46px;
+    margin-right: 15px;
+    text-align: center;
+    border-radius: 99px;
+}
+#tnContact li a i{
+    font-size: 20px;
+    color: #fff;
+	margin-top: 10px;
+}
+#tnContact li .iconzalo img{
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+#tnContact li .label{
+    position: absolute;
+    visibility: hidden;
+    cursor: pointer;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 99px 0px 0px 99px;
+    line-height: initial;
+    font-size: inherit;
+    right: 140%;
+    top: 7px;
+  }
+#tnContact li .label:before{
+    content: "";
+    top: 0;
+    left: 100%;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #189eff;
+    border-bottom: 15px solid transparent;
+}
+#tnContact li:hover .label{visibility: visible;}
+
+  /* Background Icon & Label */
+  .iconfb , .label.fb-fix{background: #3b5999}
+  .iconzalo , .label.zalo-fix{background: #008df2}
+  .iconsms , .label.sms-fix{background: #00c300;}
+  .iconcall , .label.call-fix{background: #dc0a0a}
+
+  .fb-fix.label:before{  border-left-color: #3b5999!important}
+  .zalo-fix.label:before{  border-left-color: #008df2!important}
+  .sms-fix.label:before{  border-left-color: #00c300!important}
+  .call-fix.label:before{  border-left-color: #dc0a0a!important}
+ 
