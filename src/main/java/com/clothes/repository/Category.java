@@ -1,7 +1,5 @@
 package com.clothes.repository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -23,7 +21,9 @@ public class Category {
     @Column(name = "c_name",length = 70,unique = true)
     private String cname;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Product> products;
 
 }

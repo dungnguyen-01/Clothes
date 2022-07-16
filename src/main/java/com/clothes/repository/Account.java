@@ -1,9 +1,7 @@
 package com.clothes.repository;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -67,18 +65,26 @@ public class Account {
         this.role = role;
     }
 
-    @OneToMany(mappedBy = "recipient")
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Order> recipients;
 
-    @OneToMany(mappedBy = "handlerName")
+    @OneToMany(mappedBy = "handlerName", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Order> handlerNames;
 
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Contact> contacts;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @JoinColumn(name = "roleid")
     Role role;
 

@@ -1,7 +1,5 @@
 package com.clothes.repository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -60,21 +58,34 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "categoryid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Category category;
 
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<DetailProductSize> detailProductSizes;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<ProductColor> productColors;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Image> images;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Share> shares;
-    @OneToMany(mappedBy = "product")
+
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<OrderDetail> orderDetails;
 
     public boolean hasSize(Size size) {

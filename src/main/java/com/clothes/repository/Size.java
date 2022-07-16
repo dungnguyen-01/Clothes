@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -27,6 +25,8 @@ public class Size {
     @Column(name = "type_of_item")
     private boolean typeOfItem;
 
-    @OneToMany(mappedBy = "size")
+    @OneToMany(mappedBy = "size",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<DetailProductSize> detailProductSizes;
 }

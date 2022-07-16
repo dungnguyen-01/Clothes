@@ -1,8 +1,7 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 
 @AllArgsConstructor
@@ -23,10 +22,14 @@ public class ProductColor {
 
     @ManyToOne
     @JoinColumn(name = "colorid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Color color;
 
     @ManyToOne
     @JoinColumn(name = "productid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Product product;
 
 }

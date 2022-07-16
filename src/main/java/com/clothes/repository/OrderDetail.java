@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -36,10 +34,14 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "orderid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Order order;
 
     @ManyToOne
     @JoinColumn(name = "productid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Product product;
 
 
@@ -49,7 +51,6 @@ public class OrderDetail {
         this.color = color;
         this.order = order;
         this.createDate = new Date();
-
         this.product = product;
         this.discount = product.getDiscount();
         this.price = product.getPrice();

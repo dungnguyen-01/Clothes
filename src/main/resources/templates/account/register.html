@@ -9,8 +9,8 @@
 
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
-                        <li><a href="/">Trang chủ</a></li>
-                        <li class="active"><a href="login"><i class="fa fa-angle-right" aria-hidden="true"></i>Đăng ký</a></li>
+                        <li><a href="/">[(#{menu.home})]</a></li>
+                        <li class="active"><a href="login"><i class="fa fa-angle-right" aria-hidden="true"></i>[(#{account.signup})]</a></li>
                     </ul>
                 </div>
 
@@ -25,7 +25,7 @@
                     <div class="myform">
                         <div class="logo mb-3">
                             <div class="col-md-12 text-center">
-                                <h2>Đăng ký </h2>
+                                <h2>[(#{account.signup})]</h2>
                             </div>
                         </div>
                         <h4 th:text="${message}" class="text-center text-info"></h4>
@@ -35,25 +35,25 @@
                                 <div class="col-6">
 
                                     <div class="form-group">
-                                        <label>Họ và tên:</label>
+                                        <label>[(#{account.fullname})]:</label>
                                         <i class="text-danger" th:errors="*{fullname}"></i>
-                                        <input class="form-control p-3" name="fullname"   placeholder="Nhập họ & tên">
+                                        <input class="form-control p-3" name="fullname">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Địa chỉ email:</label>
+                                        <label>Email:</label>
                                         <i class="text-danger" th:errors="*{email}"></i>
-                                        <input  class="form-control p-3" name="email"  placeholder="Nhập email">
+                                        <input  class="form-control p-3" name="email">
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Giới tính:</label>
+                                        <label>[(#{account.gender})]:</label>
                                         <div class="form-control">
                                             <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
-                                                <input name="gender" checked  type="radio" value="true"  style="height:17px; width:17px; vertical-align: middle;" /> - Nam
+                                                <input name="gender" checked  type="radio" value="true"  style="height:17px; width:17px; vertical-align: middle;" /> - [(#{account.male})]
                                             </label>
                                             <label class="ml-5" style="color: #0c0c0c;font-size: 15px">
-                                                <input name="gender" type="radio" value="false"  style="height:17px; width:17px; vertical-align: middle;" /> - Nữ
+                                                <input name="gender" type="radio" value="false"  style="height:17px; width:17px; vertical-align: middle;" /> - [(#{account.female})]
                                             </label>
 
                                         </div>
@@ -62,28 +62,24 @@
 
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Số điện thoại</label>
+                                        <label>[(#{menu.phone})]:</label>
                                         <i class="text-danger" th:errors="*{mobile}"></i>
-                                        <input type="tel" class="form-control p-3" name="mobile"   placeholder="Nhập số điện thoại">
+                                        <input type="tel" class="form-control p-3" name="mobile">
                                     </div>
                                     <div class="form-group">
-                                        <label >Mật khẩu</label>
+                                        <label>[(#{account.pass})]</label>
                                         <i class="text-danger" th:errors="*{password}"></i>
-                                        <input type="password" class="form-control p-3" name="password"  placeholder="Nhập mật khẩu">
+                                        <input type="password" class="form-control p-3" name="password">
                                     </div>
                                     <div class="form-group">
-                                        <label >Xác nhận mật khẩu</label>
+                                        <label>[(#{account.confirm})]</label>
                                         <i class="text-danger" th:errors="*{password}"></i>
-                                        <input type="password" class="form-control p-3" name="confirmPass"  placeholder="Nhập lại mật khẩu">
+                                        <input type="password" class="form-control p-3" name="confirmPass">
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="col-md-5 text-center mx-auto">
-                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm mt-5 mb-3">Đăng ký</button>
+                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm mt-5 mb-3">[(#{account.signup})]</button>
                             </div>
                             <div class="col-md-8 mx-auto">
                                 <div class="login-or">
@@ -99,7 +95,7 @@
                                 </p>
                             </div>
                             <div class="form-group mt-5">
-                                <p class="text-center">Trở lại? <a href="/account/login" style="text-decoration: none"><i class="text-primary">Đăng nhập!</i></a></p>
+                                <p class="text-center">[(#{account.back})]? <a href="/account/login" style="text-decoration: none"><i class="text-primary">[(#{account.login})]!</i></a></p>
                             </div>
                         </form>
 

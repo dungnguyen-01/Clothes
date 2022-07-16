@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,6 +20,8 @@ public class Payment {
     @Column(name = "py_name")
     private String pyname;
 
-    @OneToMany(mappedBy = "payment")
+    @OneToMany(mappedBy = "payment",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Order> orders;
 }

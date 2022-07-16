@@ -1,4 +1,37 @@
+function createCookie(name,value,minutes) {
+    if (minutes) {
+        var date = new Date();
+        date.setTime(date.getTime()+(minutes*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    } else {
+        var expires = "";
+    }
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function changeLanguage(lang){
+    let url = "/home/set-lang?lang=" + lang;
+    fetch(url).then(resq => location.reload());
+}
+
 $(document).ready(function() {
+
+    // add product single color
+    $('#pay_control').change(function (){
+        if($('#pay_control').is(':checked')){
+            $('#paypal_form').attr("hidden", false);
+            $('#btn_checkout').attr("hidden", true);
+            resetDataAddProduct()
+        }
+    })
+
+    $('#no_pay_control').change(function (){
+        if($('#no_pay_control').is(':checked')){
+            $('#btn_checkout').attr("hidden", false);
+            $('#paypal_form').attr("hidden", true);
+            resetDataAddProduct();
+        }
+    })
 
     if ($(".nofi").val().length >= 0){
         swal("Chúc mừng", "Bạn đã tạo tài khoản thành công!", "success");

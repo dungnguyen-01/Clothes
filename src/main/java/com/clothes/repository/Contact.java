@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -33,6 +31,8 @@ public class Contact {
 
     @ManyToOne
     @JoinColumn(name = "handler")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Account account;
 
     public Contact(String fullname, String email, String message, Boolean status, Date sendDate) {

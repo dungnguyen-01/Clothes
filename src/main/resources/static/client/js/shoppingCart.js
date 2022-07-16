@@ -24,7 +24,6 @@ $(document).ready(function() {
          let size = $("input:radio[class=size_cname_product]:checked").val()
          let color = $("input:radio[class=color_cname_product]:checked").val()
 
-
          if (qtyNow < qty){
              swal("Lỗi", "Số lượng hiện có chỉ còn: "+ qtyNow, "warning");
          }else {

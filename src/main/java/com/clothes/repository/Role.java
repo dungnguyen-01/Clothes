@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +18,9 @@ public class Role {
     @Column(name = "r_name",length = 50)
     private String rname;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<Account> accounts;
 
     @Override

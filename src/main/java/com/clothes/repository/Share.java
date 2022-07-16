@@ -1,9 +1,7 @@
 package com.clothes.repository;
 
 import com.clothes.repository.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,5 +30,7 @@ public class Share {
 
     @ManyToOne
     @JoinColumn(name="productid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Product product;
 }

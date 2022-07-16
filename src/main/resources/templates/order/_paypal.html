@@ -1,0 +1,30 @@
+<html th:replace="/shared/layout::dynamic(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<main>
+    <div id="paypal_form" hidden>
+        <form method="post">
+            <div class="col-50">
+                <h3>Thanh toán thẻ</h3>
+                <label>Accepted Cards</label>
+                <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Tổng tiền:</label>
+                    <input th:value="@{|*{#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}đ|}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext item-amount p-3" readonly>
+                    <input name="amount" th:value="${amount}" class="form-control " type="hidden">
+                </div>
+            </div>
+            <button type="submit" formaction="/pay" class="btn btn-primary rounded-pill py-2 btn-block mt-3">Thanh toán</button>
+        </form>
+    </div>
+    </div>
+    </div>
+
+
+</main>
+</html>

@@ -54,7 +54,7 @@ public class OrderController {
     PaymentDAO paymentDAO;
     @Autowired
     OrderService orderService;
-    @RequestMapping("/order/purchase")
+    @PostMapping("/order/purchase")
     public String purchase(Model model,Authentication auth,
                            @ModelAttribute("item") Order order,
                            @RequestParam("city") String city,

@@ -1,7 +1,5 @@
 package com.clothes.repository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,7 +29,9 @@ public class Color {
     @Column(name = "bgcolor")
     private String bgColor;
 
-    @OneToMany(mappedBy = "color")
+    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<ProductColor> productColors;
 
 }

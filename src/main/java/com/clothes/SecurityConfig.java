@@ -15,9 +15,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
-
-
-    @Autowired(required = true)
+    @Autowired
     UserDetailsService userDetailsService;
 
     @Override
@@ -38,8 +36,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                                         "/admin/color/**",
                                         "/admin/category/**")
                 .hasAnyRole("ADMIN","PRODUCT")
-
-
 
                 .antMatchers("/admin/order/**")
                 .hasAnyRole("ADMIN","ORDER")
@@ -63,7 +59,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/spring/logout")
                 .logoutSuccessUrl("/account/login")
                 .addLogoutHandler(new SecurityContextLogoutHandler());
-
         http.oauth2Login()
                 .loginPage("/account/login")
                 .defaultSuccessUrl("/oauth2/login/success", true)
@@ -71,7 +66,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .authorizationEndpoint()
                 .baseUri("/oauth2");
     }
-
 
 //    @Override
 //    public void configure(WebSecurity web) throws Exception {

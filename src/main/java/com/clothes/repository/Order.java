@@ -1,9 +1,7 @@
 package com.clothes.repository;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -40,20 +38,30 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "recipient")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Account recipient;
 
     @ManyToOne
     @JoinColumn(name = "handlername")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Account handlerName;
 
     @ManyToOne
     @JoinColumn(name = "paymentid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Payment payment;
 
     @ManyToOne
     @JoinColumn(name = "statusid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Status status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     List<OrderDetail> orderDetails;
 }

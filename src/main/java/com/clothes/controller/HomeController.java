@@ -13,15 +13,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Controller
 public class HomeController {
     @Autowired
     ProductService productService;
 
+    @ResponseBody
+    @RequestMapping("/home/set-lang")
+    public void setLanguage(){
+    }
 
     @RequestMapping({"/","/home/index"})
     public String index(Model model){

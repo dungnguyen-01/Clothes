@@ -1,8 +1,6 @@
 package com.clothes.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -24,10 +22,14 @@ public class DetailProductSize {
 
     @ManyToOne
     @JoinColumn(name = "sizeid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Size size;
 
     @ManyToOne
     @JoinColumn(name = "productid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Product product;
 
 }

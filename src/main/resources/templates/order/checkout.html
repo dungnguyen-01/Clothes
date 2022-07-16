@@ -3,7 +3,7 @@
 <main>
     <div class="container product_section_container" id="cart_info">
 
-    <form action="/order/purchase" th:object="${item}">
+    <form th:object="${item}" method="post">
         <h3 class="alert alert-success mt-5">THÔNG TIN XÁC NHẬN TRƯỚC KHI ĐẶT HÀNG</h3>
         <div class="row mt-5 mb-5">
             <div class="col-8" >
@@ -17,13 +17,11 @@
                         <label>Họ và tên:</label>
                         <input th:field="*{recipient.fullname}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext"   readonly>
                     </div>
-
                     <div class="form-group">
                         <label>Tổng tiền:</label>
                         <input th:value="@{|*{#numbers.formatDecimal(amount,0,'POINT',0,'POINT')}đ|}" style="font-weight: bold; font-size: 17px" class="form-control-plaintext item-amount p-3" readonly>
                         <input name="amount" th:value="${amount}" class="form-control " type="hidden">
                     </div>
-
                     <div class="form-group">
                         <label>Ngày đặt hàng:</label>
                         <input type="date" th:field="*{createDate}" style="font-weight: bold; font-size: 17px"  class="form-control-plaintext text-bold" >
@@ -84,7 +82,6 @@
                                 <th>SP</th>
                                 <th>SL</th>
                                 <th>Tổng tiền</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -108,7 +105,6 @@
 
                 <hr style="border: 1px solid red">
 
-
                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
                 <div class="p-4">
                     <ul class="list-unstyled mb-4">
@@ -123,16 +119,17 @@
                     </ul>
                     <ul>
                         <li>
-                            <input checked name="payment" value="1" type="radio">
+                            <input id="no_pay_control" checked name="payment" value="1" type="radio">
                             <label>Thanh toán sau khi nhận hàng</label>
                         </li>
                         <li>
-                            <input disabled name="payment" value="2" type="radio">
-                            <label style="opacity: 0.8">Thanh toán thẻ.</label>
+                            <input id="pay_control" name="payment" value="2" type="radio">
+                            <label>Thanh toán thẻ <i class="fa fa-cc-paypal" style="color:navy;"></i>.</label>
                         </li>
                     </ul>
-
-                    <button class="btn btn-primary rounded-pill py-2 btn-block mt-3">Mua hàng</button>
+                    <hr>
+                    <button id="btn_checkout" formaction="/order/purchase"  class="btn btn-primary rounded-pill py-2 btn-block mt-3">Mua hàng</button>
+                    <div th:replace="order/_paypal"></div>
                 </div>
 
             </div>
@@ -140,6 +137,9 @@
         </div>
         </div>
     </form>
+
+
+
     </div>
 </main>
 </html>

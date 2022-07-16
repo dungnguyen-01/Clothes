@@ -1,9 +1,7 @@
 package com.clothes.repository;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -35,6 +33,8 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "productid")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     Product product;
 
     public Image(String iname, Product product) {
