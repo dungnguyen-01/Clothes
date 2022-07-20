@@ -1,0 +1,28 @@
+<div xmlns:th="http://www.thymeleaf.org"></div>
+<ul id="tnContact" th:fragment="tnContact">
+    <li>
+      <a th:href="${about.facebook}" class="iconfb" target="_blanl">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <span class="label fb-fix" >Chat Facebook</span>
+    </li>
+    <li>
+      <a th:href="@{|https://zalo.me/${about.phone}|}"class="iconzalo" target="_blanl">
+        <img src="https://dichvusuamaylanh.net/templates/images/icon_zalomessage.png" class="mt-2" alt="">
+      </a>
+      <span class="label zalo-fix">Nhắn tin zalo</span>
+    </li>
+    <li>
+      <a th:href="@{|tel:${about.phone}|}" class="iconsms">
+        <i class="fa fa-commenting-o"></i>
+      </a>
+      <span class="label sms-fix">Nhắn tin điện thoại</span>
+    </li>
+    <li>
+      <a th:href="@{|tel:${about.phone}|}" class="iconcall">
+        <i class="fa fa-phone"></i>
+      </a>
+      <span class="label call-fix">Gọi điện thoại</span>
+    </li>
+  </ul>
+  </div>
